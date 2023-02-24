@@ -5,6 +5,10 @@ module.exports = {
         "@storybook/addon-essentials",
         "@storybook/addon-interactions",
     ],
+    webpackFinal: (config) => {
+      config.resolve.modules.push(`${process.cwd()}/src`)
+      return config
+    },
     framework: "@storybook/react",
     core: {
         builder: "@storybook/builder-webpack5",
