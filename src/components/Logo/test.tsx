@@ -1,7 +1,8 @@
 import { screen } from "@testing-library/react";
+import { renderWithTheme } from "../../utils/tests/helpers";
+import "jest-styled-components";
 
 import Logo from ".";
-import { renderWithTheme } from "../../utils/tests/helpers";
 
 describe("<Logo />", () => {
     it("should be render a white label by default", () => {
@@ -30,5 +31,16 @@ describe("<Logo />", () => {
         expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
             width: "20rem",
         });
+    });
+
+    it("should be render a bigger Logo without text on mobile", () => {
+        renderWithTheme(<Logo hiddeOnMobile />);
+        expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyleRule(
+            "width",
+            "5.8rem",
+            {
+                media: "(max-width: 768px)",
+            },
+        );
     });
 });
