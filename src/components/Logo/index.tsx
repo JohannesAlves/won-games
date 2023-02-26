@@ -1,10 +1,5 @@
 import * as S from "./styles";
-
-export type LogoProps = {
-    color?: "black" | "white";
-    size?: "normal" | "large";
-    hiddeOnMobile?: boolean;
-};
+import { LogoProps } from "./types";
 
 export default function Logo({
     color = "white",
