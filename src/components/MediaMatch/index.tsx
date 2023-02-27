@@ -1,12 +1,6 @@
 import styled, { css } from "styled-components";
-import media, { DefaultBreakpoints } from "styled-media-query";
-
-type breakpoint = keyof DefaultBreakpoints;
-
-export type MediaMatchProps = {
-    lessThan?: breakpoint;
-    greaterThan?: breakpoint;
-};
+import media from "styled-media-query";
+import { MediaMatchProps, breakpoint } from "./types";
 
 const mediaMatchModifiers = {
     lessThan: (size: breakpoint) => css`
