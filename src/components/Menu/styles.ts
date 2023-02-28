@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import media from "styled-media-query";
+import { MenuFullProps } from "./types";
 
 export const Wrapper = styled.menu`
     ${({ theme }) => css`
@@ -75,10 +76,6 @@ export const MenuLink = styled.a`
         }
     `}
 `;
-
-type MenuFullProps = {
-    isOpen: boolean;
-};
 
 export const MenuFull = styled.nav<MenuFullProps>`
     ${({ theme, isOpen }) => css`
