@@ -7,7 +7,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "eslint . --fix --max-warnings=0",
-        "test": "jest --passWithNoTests --coverage",
+        "test": "jest --passWithNoTests",
         "test:watch": "jest --watch",
         "test:coverage": "jest --coverage",
         "prepare": "husky install",
