@@ -6,14 +6,17 @@ const createJestConfig = nextJest({
 
 /** @type {import('jest').Config} */
 const customJestConfig = {
-  testEnvironment: 'jest-environment-jsdom',
-  collectCoverageFrom: [
-    'src/**/*.test.ts(x)',
-    '!src/**/stories.tsx',
-    '!src/pages/**/*.tsx',
-    '!src/styles/**/*.tsx',
-  ],
-  setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
-}
+    testEnvironment: "jest-environment-jsdom",
+    collectCoverageFrom: [
+        "src/**/*.test.tsx",
+        "!src/**/stories.tsx",
+        "!src/pages/**/*.tsx",
+        "!src/styles/**/*.tsx",
+    ],
+    transform: {
+        "^.+\\.(t|j)sx?$": "@swc/jest",
+    },
+    setupFilesAfterEnv: ["<rootDir>/.jest/setup.ts"],
+};
 
 module.exports = createJestConfig(customJestConfig)
