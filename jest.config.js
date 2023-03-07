@@ -18,6 +18,8 @@ const customJestConfig = {
         "^.+\\.test.(t|j)sx?$": "@swc/jest",
     },
     setupFilesAfterEnv: ["<rootDir>/.jest/setup.ts"],
+    modulePaths: ["<rootDir>"],
+    moduleDirectories: ["node_modules", "src"],
 };
 
 module.exports = createJestConfig(customJestConfig)
