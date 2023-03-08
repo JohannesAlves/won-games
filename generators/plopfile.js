@@ -29,11 +29,6 @@ module.exports = plop => {
                 path: "../src/components/{{pascalCase name}}/index.test.tsx",
                 templateFile: "templates/index.test.tsx",
             },
-            {
-                type: "add",
-                path: "../src/components/{{pascalCase name}}/types.ts",
-                templateFile: "templates/types.ts",
-            },
         ],
     });
 }
