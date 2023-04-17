@@ -5,6 +5,6 @@ export type HeadingProps = {
     color?: "black" | "white";
     lineLeft?: boolean;
     lineBottom?: boolean;
-    size?: "small" | "medium";
+    size?: "small" | "medium" | "huge";
     lineColor?: LineColors;
 };
