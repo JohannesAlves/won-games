@@ -12,11 +12,9 @@ export const Wrapper = styled.menu`
 `;
 
 export const LogoWrapper = styled.div`
-    ${media.lessThan("medium")`
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-  `}
 `;
 
 export const IconWrapper = styled.div`
@@ -42,7 +40,7 @@ export const MenuGroup = styled.div`
 
 export const MenuNav = styled.div`
     ${({ theme }) => css`
-        margin-left: ${theme.spacings.small};
+        margin-left: ${theme.spacings.large};
     `}
 `;
 

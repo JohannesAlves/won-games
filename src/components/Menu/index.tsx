@@ -9,6 +9,7 @@ import * as S from "./styles";
 import Button from "../../components/Button";
 import { MenuProps } from "./types";
 import MediaMatch from "../../components/MediaMatch";
+import Link from "next/link";
 
 export default function Menu({ username }: MenuProps) {
     const [isOpen, setIsOpen] = useState(false);
@@ -21,16 +22,16 @@ export default function Menu({ username }: MenuProps) {
                 </S.IconWrapper>
             </MediaMatch>
 
-            <S.LogoWrapper>
-                <Logo hiddeOnMobile />
-            </S.LogoWrapper>
-
             <MediaMatch greaterThan="medium">
                 <S.MenuNav>
                     <S.MenuLink href="#">Home</S.MenuLink>
                     <S.MenuLink href="#">Explore</S.MenuLink>
                 </S.MenuNav>
             </MediaMatch>
+
+            <S.LogoWrapper>
+                <Logo hiddeOnMobile />
+            </S.LogoWrapper>
 
             <S.MenuGroup>
                 <S.IconWrapper>
@@ -41,7 +42,9 @@ export default function Menu({ username }: MenuProps) {
                 </S.IconWrapper>
                 {!username && (
                     <MediaMatch greaterThan="medium">
-                        <Button>Sign in</Button>
+                        <Link href="/sign-in">
+                            <Button>Sign in</Button>
+                        </Link>
                     </MediaMatch>
                 )}
             </S.MenuGroup>
