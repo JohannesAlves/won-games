@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import media from "styled-media-query";
 import { MenuFullProps } from "./types";
+import Link from "next/link";
 
 export const Wrapper = styled.menu`
     ${({ theme }) => css`
@@ -87,6 +88,8 @@ export const MenuFull = styled.nav<MenuFullProps>`
         left: 0;
         right: 0;
         height: 100vh;
+        width: 100vw;
+        z-index: ${theme.layers.overlay};
         overflow: hidden;
         transition: opacity 0.3s ease-in-out;
         opacity: ${isOpen ? 1 : 0};
@@ -136,7 +139,7 @@ export const RegisterBox = styled.div`
     `}
 `;
 
-export const CreateAccount = styled.a`
+export const CreateAccount = styled(Link)`
     ${({ theme }) => css`
         text-decoration: none;
         color: ${theme.colors.primary};

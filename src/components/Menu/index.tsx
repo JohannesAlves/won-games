@@ -65,11 +65,13 @@ export default function Menu({ username }: MenuProps) {
 
                 {!username && (
                     <S.RegisterBox>
-                        <Button fullWidth size="large">
-                            Log in now
-                        </Button>
+                        <Link href="/sign-in">
+                            <Button fullWidth size="large">
+                                Sign In
+                            </Button>
+                        </Link>
                         <span>or</span>
-                        <S.CreateAccount href="#" title="Sign Up">
+                        <S.CreateAccount href="/sign-up" title="Sign Up">
                             Sign Up
                         </S.CreateAccount>
                     </S.RegisterBox>
