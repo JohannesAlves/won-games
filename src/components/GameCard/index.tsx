@@ -10,7 +10,7 @@ import {
 
 export default function GameCard({
     developer,
-    image,
+    img,
     price,
     title,
     promotionalPrice,
@@ -28,7 +28,7 @@ export default function GameCard({
                         {ribbon}
                     </Ribbon>
                 )}
-                <img src={image} alt={title} />
+                <img src={img} alt={title} />
             </S.ImageBox>
 
             <S.Content>
