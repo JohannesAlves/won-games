@@ -6,7 +6,7 @@ import theme from "../../styles/theme";
 const props = {
     title: "Population Zero",
     developer: "Rockstar Games",
-    image: "https://source.unsplash.com/user/willianjusten/300x140",
+    img: "https://source.unsplash.com/user/willianjusten/300x140",
     price: "R$ 235,00",
 };
 
@@ -17,7 +17,7 @@ describe("<GameCard />", () => {
         // verificar title, developer, imagem, preço
         expect(screen.getByRole("img", { name: props.title })).toHaveAttribute(
             "src",
-            props.image,
+            props.img,
         );
 
         expect(screen.getByRole("heading", { name: props.title })).toBeInTheDocument();
