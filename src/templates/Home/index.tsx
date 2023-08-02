@@ -8,6 +8,7 @@ import Menu from "components/Menu";
 
 import * as S from "./styles";
 import { HomeTemplateProps } from "./types";
+import ShowCase from "components/ShowCase";
 
 const Home = ({
     banners,
@@ -29,41 +30,21 @@ const Home = ({
         </Container>
 
         <S.SectionNews>
-            <Container>
-                <Heading lineLeft lineColor="secondary">
-                    News
-                </Heading>
-
-                <GameCardSlider items={newGames} color="black" />
-            </Container>
+            <ShowCase title="News" games={newGames} />
         </S.SectionNews>
 
-        <Container>
-            <S.SectionMostPopular>
-                <Heading lineLeft lineColor="secondary" color="white">
-                    Most Popular
-                </Heading>
-                <Highlight {...mostPopularHighlight} />
-                <GameCardSlider items={mostPopularGames} />
-            </S.SectionMostPopular>
+        <ShowCase
+            title="Most Popular"
+            highlight={mostPopularHighlight}
+            games={mostPopularGames}
+        />
 
-            <S.SectionUpcoming>
-                <Heading lineLeft lineColor="secondary" color="white">
-                    Upcomming
-                </Heading>
-                <GameCardSlider items={upcommingGames} />
-                <Highlight {...upcommingHighlight} />
-                <GameCardSlider items={upcommingMoreGames} />
-            </S.SectionUpcoming>
+        <S.SectionUpcoming>
+            <ShowCase title="Upcoming" games={upcommingGames} />
+            <ShowCase highlight={upcommingHighlight} games={upcommingMoreGames} />
+        </S.SectionUpcoming>
 
-            <S.SectionFreeGames>
-                <Heading lineLeft lineColor="secondary" color="white">
-                    Free games
-                </Heading>
-                <Highlight {...freeHighlight} />
-                <GameCardSlider items={freeGames} />
-            </S.SectionFreeGames>
-        </Container>
+        <ShowCase title="Free Games" highlight={freeHighlight} games={freeGames} />
 
         <S.SectionFooter>
             <Container>
