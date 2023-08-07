@@ -2,7 +2,7 @@ import styled, { DefaultTheme, css } from "styled-components";
 import media from "styled-media-query";
 import { HeadingProps, LineColors } from "./types";
 
-const wrapperModifies = {
+export const wrapperModifiers = {
     small: (theme: DefaultTheme) => css`
         font-size: ${theme.font.sizes.medium};
 
@@ -45,8 +45,8 @@ export const Wrapper = styled.h2<HeadingProps>`
         font-size: ${theme.font.sizes.xlarge};
         color: ${theme.colors[color!]};
 
-        ${lineLeft && wrapperModifies.lineLeft(theme, lineColor!)}
-        ${lineBottom && wrapperModifies.lineBottom(theme, lineColor!)}
-        ${!!size && wrapperModifies[size](theme)}
+        ${lineLeft && wrapperModifiers.lineLeft(theme, lineColor!)}
+        ${lineBottom && wrapperModifiers.lineBottom(theme, lineColor!)}
+        ${!!size && wrapperModifiers[size](theme)}
     `}
 `;
