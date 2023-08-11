@@ -11,6 +11,7 @@ const GameDetails = ({
     releaseDate,
     rating,
     genres,
+    publisher,
 }: GameDetailsProps) => {
     const platformIcons = {
         linux: <Linux title="Linux" size={18} />,
@@ -54,7 +55,7 @@ const GameDetails = ({
 
                 <S.Block>
                     <S.Label>Publisher</S.Label>
-                    <S.Description>2K</S.Description>
+                    <S.Description>{publisher}</S.Description>
                 </S.Block>
 
                 <S.Block>
