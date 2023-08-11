@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled, { css } from "styled-components";
 import media from "styled-media-query";
 
@@ -47,7 +48,7 @@ export const MenuNav = styled.div`
     `}
 `;
 
-export const MenuLink = styled.a`
+export const MenuLink = styled(Link)`
     ${({ theme }) => css`
         position: relative;
         color: ${theme.colors.white};

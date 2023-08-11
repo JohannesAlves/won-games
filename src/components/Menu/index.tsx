@@ -30,7 +30,9 @@ export default function Menu({ username }: MenuProps) {
             </MediaMatch>
 
             <S.LogoWrapper>
-                <Logo hiddeOnMobile />
+                <Link href="/">
+                    <Logo hiddeOnMobile />
+                </Link>
             </S.LogoWrapper>
 
             <S.MenuGroup>
@@ -52,7 +54,7 @@ export default function Menu({ username }: MenuProps) {
             <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
                 <CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
                 <S.MenuNav>
-                    <S.MenuLink href="#">Home</S.MenuLink>
+                    <S.MenuLink href="/">Home</S.MenuLink>
                     <S.MenuLink href="#">Explore</S.MenuLink>
 
                     {!!username && (
