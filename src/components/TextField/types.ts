@@ -1,7 +1,6 @@
 export type TextFieldProps = {
     onInput?: (value: string) => void;
     label?: string;
-    labelFor?: string;
     initialValue?: string;
     iconToRight?: boolean;
     disabled?: boolean;

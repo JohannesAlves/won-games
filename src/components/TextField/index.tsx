@@ -6,7 +6,7 @@ import { TextFieldProps } from "./types";
 
 const TextField = ({
     label,
-    labelFor = "",
+    name,
     initialValue = "",
     onInput,
     hasIcon,
@@ -26,15 +26,17 @@ const TextField = ({
 
     return (
         <S.Wrapper error={error}>
-            {!!label && <S.Label htmlFor={labelFor}>{label}</S.Label>}
+            {!!label && <S.Label htmlFor={name}>{label}</S.Label>}
             <S.InputWrapper iconToRight={!!iconToRight && iconToRight}>
                 {!!hasIcon && <S.Icon>{hasIcon}</S.Icon>}
                 <S.Input
                     type="text"
                     onChange={onChange}
                     value={value}
-                    {...props}
                     disabled={disabled}
+                    name={name}
+                    {...(label ? { id: name } : {})}
+                    {...props}
                 />
             </S.InputWrapper>
             {!!error && <S.Error>{error}</S.Error>}
