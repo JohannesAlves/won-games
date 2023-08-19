@@ -3,7 +3,7 @@ import ProfileMenu from ".";
 import { ProfileMenuProps } from "./types";
 
 export default {
-    title: "ProfileMenu",
+    title: "Profile/ProfileMenu",
     component: ProfileMenu,
     parameters: {
         backgrounds: {
