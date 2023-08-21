@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Link from "next/link";
+
 import { Menu2 as MenuIcon } from "@styled-icons/remix-fill/Menu2";
-import { ShoppingCart as ShoppingCartIcon } from "@styled-icons/material-outlined/ShoppingCart";
 import { Search as SearchIcon } from "@styled-icons/material-outlined/Search";
 import { Close as CloseIcon } from "@styled-icons/material-outlined/Close";
 
@@ -9,7 +10,9 @@ import * as S from "./styles";
 import Button from "../../components/Button";
 import { MenuProps } from "./types";
 import MediaMatch from "../../components/MediaMatch";
-import Link from "next/link";
+import CartDropdown from "components/CartDropdown";
+import CartIcon from "components/CartIcon";
+import UserDropdown from "components/UserDropdown";
 
 export default function Menu({ username }: MenuProps) {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,8 +27,13 @@ export default function Menu({ username }: MenuProps) {
 
             <MediaMatch greaterThan="medium">
                 <S.MenuNav>
-                    <S.MenuLink href="#">Home</S.MenuLink>
-                    <S.MenuLink href="#">Explore</S.MenuLink>
+                    <Link href="/" style={{ textDecoration: "none" }}>
+                        <S.MenuLink>Home</S.MenuLink>
+                    </Link>
+
+                    <Link href="/games" style={{ textDecoration: "none" }}>
+                        <S.MenuLink>Explore</S.MenuLink>
+                    </Link>
                 </S.MenuNav>
             </MediaMatch>
 
@@ -40,27 +48,47 @@ export default function Menu({ username }: MenuProps) {
                     <SearchIcon aria-label="Search" />
                 </S.IconWrapper>
                 <S.IconWrapper>
-                    <ShoppingCartIcon aria-label="Open Shopping Cart" />
-                </S.IconWrapper>
-                {!username && (
                     <MediaMatch greaterThan="medium">
+                        <CartDropdown />
+                    </MediaMatch>
+                    <MediaMatch lessThan="medium">
+                        <Link href="/cart">
+                            <CartIcon />
+                        </Link>
+                    </MediaMatch>
+                </S.IconWrapper>
+                <MediaMatch greaterThan="medium">
+                    {!username ? (
                         <Link href="/sign-in">
                             <Button>Sign in</Button>
                         </Link>
-                    </MediaMatch>
-                )}
+                    ) : (
+                        <UserDropdown username={username} />
+                    )}
+                </MediaMatch>
             </S.MenuGroup>
 
             <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
                 <CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
                 <S.MenuNav>
-                    <S.MenuLink href="/">Home</S.MenuLink>
-                    <S.MenuLink href="#">Explore</S.MenuLink>
+                    <Link href="/" style={{ textDecoration: "none" }}>
+                        <S.MenuLink>Home</S.MenuLink>
+                    </Link>
+                    <Link href="/games" style={{ textDecoration: "none" }}>
+                        <S.MenuLink>Explore</S.MenuLink>
+                    </Link>
 
                     {!!username && (
                         <>
-                            <S.MenuLink href="#">My account</S.MenuLink>
-                            <S.MenuLink href="#">Wishlist</S.MenuLink>
+                            <Link href="/profile/me" style={{ textDecoration: "none" }}>
+                                <S.MenuLink>My Profile</S.MenuLink>
+                            </Link>
+                            <Link
+                                href="/profile/wishlist"
+                                style={{ textDecoration: "none" }}
+                            >
+                                <S.MenuLink>Wishlist</S.MenuLink>
+                            </Link>
                         </>
                     )}
                 </S.MenuNav>

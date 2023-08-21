@@ -6,6 +6,11 @@ import { MenuProps } from "./types";
 export default {
     title: "Menu",
     component: Menu,
+    parameters: {
+        backgrounds: {
+            default: "won-dark",
+        },
+    },
 } as Meta;
 
 export const Basic: Story<MenuProps> = args => <Menu {...args} />;
@@ -16,3 +21,5 @@ Basic.parameters = {
         default: "dark",
     },
 };
+
+export const Logged: Story<MenuProps> = args => <Menu {...args} username="Johannes" />;

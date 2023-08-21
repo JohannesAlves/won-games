@@ -48,7 +48,7 @@ export const MenuNav = styled.div`
     `}
 `;
 
-export const MenuLink = styled(Link)`
+export const MenuLink = styled.span`
     ${({ theme }) => css`
         position: relative;
         color: ${theme.colors.white};
