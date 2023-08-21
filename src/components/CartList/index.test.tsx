@@ -17,4 +17,11 @@ describe("<CartList />", () => {
 
         expect(screen.getByText(/buy it now/i)).toBeInTheDocument();
     });
+
+    it("should render <Empty /> if are no games", () => {
+        renderWithTheme(<CartList items={[]} />);
+
+        expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument();
+        expect(screen.queryByText(/total/i)).not.toBeInTheDocument();
+    });
 });
