@@ -7,8 +7,10 @@ import {
     FavoriteBorder,
     Favorite,
 } from "styled-icons/material-outlined";
+import Link from "next/link";
 
 export default function GameCard({
+    slug,
     developer,
     img,
     price,
@@ -22,21 +24,24 @@ export default function GameCard({
 }: GameCardProps) {
     return (
         <S.Wrapper>
-            <S.ImageBox>
-                {!!ribbon && (
-                    <Ribbon color={ribbonColor} size={ribbonSize}>
-                        {ribbon}
-                    </Ribbon>
-                )}
-                <img src={img} alt={title} />
-            </S.ImageBox>
+            <Link href={`/game/${slug}`} passHref>
+                <S.ImageBox>
+                    {!!ribbon && (
+                        <Ribbon color={ribbonColor} size={ribbonSize}>
+                            {ribbon}
+                        </Ribbon>
+                    )}
+                    <img src={img} alt={title} />
+                </S.ImageBox>
+            </Link>
 
             <S.Content>
-                <S.Info>
-                    <S.Title>{title}</S.Title>
-                    <S.Developer>{developer}</S.Developer>
-                </S.Info>
-
+                <Link href={`/game/${slug}`}>
+                    <S.Info>
+                        <S.Title>{title}</S.Title>
+                        <S.Developer>{developer}</S.Developer>
+                    </S.Info>
+                </Link>
                 <S.FavButton role="button" onClick={onFav}>
                     {isFavorite ? (
                         <Favorite aria-label="remove from wishlist"></Favorite>
