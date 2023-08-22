@@ -6,6 +6,7 @@ import Ribbon from "components/Ribbon";
 
 import * as S from "./styles";
 import { GameInfoProps } from "./types";
+import formatPrice from "utils/formatPrice";
 
 const GameInfo = ({ title, description, price }: GameInfoProps) => (
     <S.Wrapper>
@@ -13,7 +14,7 @@ const GameInfo = ({ title, description, price }: GameInfoProps) => (
             {title}
         </Heading>
 
-        <Ribbon color="secondary">{`$${price}`}</Ribbon>
+        <Ribbon color="secondary">{`${formatPrice(price)}`}</Ribbon>
 
         <S.Description>{description}</S.Description>
 

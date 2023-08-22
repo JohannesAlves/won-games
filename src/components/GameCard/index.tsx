@@ -8,6 +8,7 @@ import {
     Favorite,
 } from "styled-icons/material-outlined";
 import Link from "next/link";
+import formatPrice from "utils/formatPrice";
 
 export default function GameCard({
     slug,
@@ -51,8 +52,10 @@ export default function GameCard({
                 </S.FavButton>
 
                 <S.BuyBox>
-                    {!!promotionalPrice && <S.Price isPromotional>{price}</S.Price>}
-                    <S.Price>{promotionalPrice || price}</S.Price>
+                    {!!promotionalPrice && (
+                        <S.Price isPromotional>{formatPrice(price)}</S.Price>
+                    )}
+                    <S.Price>{formatPrice(promotionalPrice || price)}</S.Price>
                     <Button icon={<AddShoppingCart />} size="small" />
                 </S.BuyBox>
             </S.Content>
