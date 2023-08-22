@@ -41,6 +41,10 @@ const GlobalStyles: GlobalStyleComponent<
               background-color: ${theme.colors.mainBg};
           `}
       }
+
+      a {
+          text-decoration: none;
+      }
   `}
 
 
