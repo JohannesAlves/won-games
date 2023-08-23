@@ -9,13 +9,13 @@ import highlightMock from "components/Highlight/mock";
 import Home from ".";
 
 const props = {
+    slug: "population-zero",
     banners: bannerMock,
     newGames: [gamesMock[0]],
     mostPopularHighlight: highlightMock,
     mostPopularGames: [gamesMock[0]],
     upcommingGames: [gamesMock[0]],
     upcommingHighlight: highlightMock,
-    upcommingMoreGames: [gamesMock[0]],
     freeGames: [gamesMock[0]],
     freeHighlight: highlightMock,
 };
@@ -42,7 +42,7 @@ describe("<Home />", () => {
     it("should render banner and show cases", () => {
         renderWithTheme(<Home {...props} />);
 
-        expect(screen.getAllByTestId("Mock ShowCase")).toHaveLength(5);
+        expect(screen.getAllByTestId("Mock ShowCase")).toHaveLength(4);
         expect(screen.getByTestId("Mock BannerSlider")).toBeInTheDocument();
 
         // banner
