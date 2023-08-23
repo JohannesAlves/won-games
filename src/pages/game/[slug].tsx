@@ -1,9 +1,11 @@
-import Game from "templates/Game";
-import gamesMock from "components/GameCardSlider/mock";
-import highlightMock from "components/Highlight/mock";
-import { GameTemplateProps } from "templates/Game/types";
 import { useRouter } from "next/router";
 import { initializeApollo } from "utils/apollo";
+
+import Game from "templates/Game";
+import { GameTemplateProps } from "templates/Game/types";
+
+import gamesMock from "components/GameCardSlider/mock";
+import highlightMock from "components/Highlight/mock";
 import { QueryGames, QueryGamesVariables } from "graphql/generated/QueryGames";
 import { QUERY_GAMES, QUERY_GAME_BY_SLUG } from "graphql/queries/games";
 import {
@@ -11,17 +13,24 @@ import {
     QueryGameBySlugVariables,
 } from "graphql/generated/QueryGameBySlug";
 import { GetStaticProps } from "next";
+import { QueryRecommended } from "graphql/generated/QueryRecommended";
+import { QUERY_RECOMMENDED } from "graphql/queries/recommended";
+import { gamesMapper } from "utils/mappers";
 
 const apolloClient = initializeApollo();
 
 export default function Index(props: GameTemplateProps) {
     const router = useRouter();
 
+    // se a rota não tiver sido gerada ainda
+    // você pode mostrar um loading
+    // uma tela de esqueleto
     if (router.isFallback) return null;
 
     return <Game {...props} />;
 }
 
+// gerar em build time (/game/bla, /bame/foo ...)
 export async function getStaticPaths() {
     const { data } = await apolloClient.query<QueryGames, QueryGamesVariables>({
         query: QUERY_GAMES,
@@ -36,6 +45,7 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+    // Get game data
     const { data } = await apolloClient.query<QueryGameBySlug, QueryGameBySlugVariables>({
         query: QUERY_GAME_BY_SLUG,
         variables: { slug: `${params?.slug}` },
@@ -47,9 +57,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     const game = data.games[0];
 
+    // get recommended games
+    const { data: recommended } = await apolloClient.query<QueryRecommended>({
+        query: QUERY_RECOMMENDED,
+    });
+
     return {
         props: {
-            revalidate: 60, //seconds
+            revalidate: 60,
             cover: `http://localhost:1337${game.cover?.src}`,
             gameInfo: {
                 title: game.name,
@@ -67,11 +82,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
                 platforms: game.platforms.map(platform => platform.name),
                 publisher: game.publisher?.name,
                 rating: game.rating,
-                genres: game.categories.map(categorie => categorie.name),
+                genres: game.categories.map(category => category.name),
             },
             upcomingGames: gamesMock,
             upcomingHighlight: highlightMock,
-            recommendedGames: gamesMock,
+            recommendedTitle: recommended.recommended?.section?.title,
+            recommendedGames: gamesMapper(recommended.recommended?.section?.games),
         },
     };
 };
