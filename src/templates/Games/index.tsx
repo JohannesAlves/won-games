@@ -5,14 +5,10 @@ import ExploreSidebar from "components/ExploreSidebar";
 import { Grid } from "components/Grid";
 import GameCard from "components/GameCard";
 import { KeyboardArrowDown } from "styled-icons/material-outlined";
-import { useQuery } from "@apollo/client";
-import { QueryGames, QueryGamesVariables } from "graphql/generated/QueryGames";
-import { QUERY_GAMES } from "graphql/queries/games";
+import { useQueryGames } from "graphql/queries/games";
 
 const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
-    const { data, fetchMore } = useQuery<QueryGames, QueryGamesVariables>(QUERY_GAMES, {
-        variables: { limit: 15 },
-    });
+    const { data, fetchMore } = useQueryGames({ variables: { limit: 15 } });
 
     const handleShowMore = () => {
         fetchMore({
