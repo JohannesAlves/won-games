@@ -5,25 +5,40 @@ import ExploreSidebar from "components/ExploreSidebar";
 import { Grid } from "components/Grid";
 import GameCard from "components/GameCard";
 import { KeyboardArrowDown } from "styled-icons/material-outlined";
+import { useQuery } from "@apollo/client";
+import { QueryGames, QueryGamesVariables } from "graphql/generated/QueryGames";
+import { QUERY_GAMES } from "graphql/queries/games";
 
-const GamesTemplate = ({ games = [], filterItems }: GamesTemplateProps) => (
-    <Base>
-        <S.Main>
-            <ExploreSidebar items={filterItems} onFilter={() => ({})} />
+const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
+    const { data } = useQuery<QueryGames, QueryGamesVariables>(QUERY_GAMES, {
+        variables: { limit: 15 },
+    });
 
-            <section>
-                <Grid>
-                    {games.map(game => (
-                        <GameCard key={game.title} {...game} />
-                    ))}
-                </Grid>
+    return (
+        <Base>
+            <S.Main>
+                <ExploreSidebar items={filterItems} onFilter={() => ({})} />
 
-                <S.ShowMore role="button" onClick={() => ({})}>
-                    <KeyboardArrowDown size={50} title="Show More" />
-                </S.ShowMore>
-            </section>
-        </S.Main>
-    </Base>
-);
+                <section>
+                    <Grid>
+                        {data?.games.map(game => (
+                            <GameCard
+                                key={game.name}
+                                slug={game.slug}
+                                title={game.name}
+                                developer={game.developers[0].name}
+                                img={`http://localhost:1337${game.cover?.url}` || ""}
+                                price={game.price}
+                            />
+                        ))}
+                    </Grid>
 
+                    <S.ShowMore role="button" onClick={() => ({})}>
+                        <KeyboardArrowDown size={50} title="Show More" />
+                    </S.ShowMore>
+                </section>
+            </S.Main>
+        </Base>
+    );
+};
 export default GamesTemplate;
