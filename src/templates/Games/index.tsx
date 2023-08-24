@@ -10,9 +10,18 @@ import { QueryGames, QueryGamesVariables } from "graphql/generated/QueryGames";
 import { QUERY_GAMES } from "graphql/queries/games";
 
 const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
-    const { data } = useQuery<QueryGames, QueryGamesVariables>(QUERY_GAMES, {
+    const { data, fetchMore } = useQuery<QueryGames, QueryGamesVariables>(QUERY_GAMES, {
         variables: { limit: 15 },
     });
+
+    const handleShowMore = () => {
+        fetchMore({
+            variables: {
+                limit: 15,
+                start: data?.games.length,
+            },
+        });
+    };
 
     return (
         <Base>
@@ -33,7 +42,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
                         ))}
                     </Grid>
 
-                    <S.ShowMore role="button" onClick={() => ({})}>
+                    <S.ShowMore role="button" onClick={handleShowMore}>
                         <KeyboardArrowDown size={50} title="Show More" />
                     </S.ShowMore>
                 </section>
