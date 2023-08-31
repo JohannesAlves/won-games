@@ -1,3 +1,5 @@
+import { ParsedUrlQueryInput } from "querystring";
+
 export type ItemProps = {
     title: string;
     name: string;
@@ -10,9 +12,7 @@ type Field = {
     name: string;
 };
 
-type Values = {
-    [field: string]: boolean | string;
-};
+type Values = ParsedUrlQueryInput;
 
 export type ExploreSidebarProps = {
     items: ItemProps[];

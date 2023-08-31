@@ -3,6 +3,8 @@ import { fireEvent, screen } from "@testing-library/react";
 import ExploreSidebar from ".";
 import { renderWithTheme } from "utils/tests/helpers";
 import items from "./mock";
+import { css } from "styled-components";
+import { Overlay } from "./styles";
 
 describe("<ExploreSidebar />", () => {
     it("should render the headings", () => {
@@ -29,7 +31,10 @@ describe("<ExploreSidebar />", () => {
             <ExploreSidebar
                 onFilter={jest.fn}
                 items={items}
-                initialValues={{ windows: true, sort_by: "low-to-high" }}
+                initialValues={{
+                    platforms: ["windows"],
+                    sort_by: "low-to-high",
+                }}
             />,
         );
 
@@ -43,14 +48,17 @@ describe("<ExploreSidebar />", () => {
         renderWithTheme(
             <ExploreSidebar
                 items={items}
-                initialValues={{ windows: true, sort_by: "low-to-high" }}
+                initialValues={{
+                    platforms: ["windows"],
+                    sort_by: "low-to-high",
+                }}
                 onFilter={onFilter}
             />,
         );
-        const button = screen.getByRole("button", { name: /filter/i });
-
-        fireEvent.click(button);
-        expect(onFilter).toBeCalledWith({ windows: true, sort_by: "low-to-high" });
+        expect(onFilter).toBeCalledWith({
+            platforms: ["windows"],
+            sort_by: "low-to-high",
+        });
     });
 
     it("should filter with checked values", () => {
@@ -60,15 +68,15 @@ describe("<ExploreSidebar />", () => {
         const filterByWindows = screen.getByLabelText(/windows/i);
         const filterByLinux = screen.getByLabelText(/linux/i);
         const filterByLowToHigh = screen.getByLabelText(/low to high/i);
-        const button = screen.getByRole("button", { name: /filter/i });
 
         fireEvent.click(filterByLowToHigh);
         fireEvent.click(filterByWindows);
         fireEvent.click(filterByLinux);
-        fireEvent.click(button);
+
+        expect(onFilter).toHaveBeenCalledTimes(4);
+
         expect(onFilter).toBeCalledWith({
-            windows: true,
-            linux: true,
+            platforms: ["windows", "linux"],
             sort_by: "low-to-high",
         });
     });
@@ -79,11 +87,9 @@ describe("<ExploreSidebar />", () => {
         renderWithTheme(<ExploreSidebar items={items} onFilter={onFilter} />);
         const filterByHighToLow = screen.getByLabelText(/high to low/i);
         const filterByLowToHigh = screen.getByLabelText(/low to high/i);
-        const button = screen.getByRole("button", { name: /filter/i });
 
         fireEvent.click(filterByLowToHigh);
         fireEvent.click(filterByHighToLow);
-        fireEvent.click(button);
         expect(onFilter).toBeCalledWith({ sort_by: "high-to-low" });
     });
 });
