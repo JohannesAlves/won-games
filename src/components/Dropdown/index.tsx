@@ -10,6 +10,7 @@ const Dropdown = ({ children, title }: DropdownProps) => {
             <S.Title onClick={() => setIsOpen(!isOpen)}>{title}</S.Title>
 
             <S.Content aria-hidden={!isOpen}>{children}</S.Content>
+            <S.Overlay aria-hidden={!isOpen} onClick={() => setIsOpen(!isOpen)} />
         </S.Wrapper>
     );
 };
