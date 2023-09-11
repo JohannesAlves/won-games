@@ -7,8 +7,9 @@ import Ribbon from "components/Ribbon";
 import * as S from "./styles";
 import { GameInfoProps } from "./types";
 import formatPrice from "utils/formatPrice";
+import CartButton from "components/CartButton";
 
-const GameInfo = ({ title, description, price }: GameInfoProps) => (
+const GameInfo = ({ id, title, description, price }: GameInfoProps) => (
     <S.Wrapper>
         <Heading color="black" lineBottom>
             {title}
@@ -19,9 +20,7 @@ const GameInfo = ({ title, description, price }: GameInfoProps) => (
         <S.Description>{description}</S.Description>
 
         <S.ButtonsWrapper>
-            <Button icon={<AddShoppingCart />} size="large">
-                Add to cart
-            </Button>
+            <CartButton id={id} size="large" hasText />
             <Button icon={<FavoriteBorder />} size="large" minimal>
                 Wishlist
             </Button>
