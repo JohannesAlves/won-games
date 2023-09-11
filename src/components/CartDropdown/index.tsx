@@ -1,15 +1,13 @@
 import * as S from "./styles";
 
-import { CartDropdownProps } from "./types";
-
 import Dropdown from "components/Dropdown";
 import CartIcon from "components/CartIcon";
 import CartList from "components/CartList";
 
-const CartDropdown = ({ items, total }: CartDropdownProps) => (
+const CartDropdown = () => (
     <S.Wrapper>
         <Dropdown title={<CartIcon />}>
-            <CartList items={items} total={total} hasButton />
+            <CartList hasButton />
         </Dropdown>
     </S.Wrapper>
 );
