@@ -13,4 +13,8 @@ export default {
 
 export const Default: Story = () => <CartIcon />;
 
-export const WithQuantity: Story = () => <CartIcon quantity={1} />;
+export const WithQuantity: Story = () => <CartIcon />;
+
+WithQuantity.args = {
+    quantity: 3,
+};
