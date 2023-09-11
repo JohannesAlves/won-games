@@ -8,9 +8,8 @@ import Heading from "components/Heading";
 import { Divider } from "components/Divider";
 import CartList from "components/CartList";
 import PaymentOptions from "components/PaymentOptions";
-import Empty from "components/Empty";
 
-const Cart = ({ items, total, cards }: CartProps) => {
+const Cart = ({ cards }: CartProps) => {
     const handlePayment = () => ({});
 
     return (
@@ -19,21 +18,11 @@ const Cart = ({ items, total, cards }: CartProps) => {
                 <Heading lineLeft lineColor="secondary" color="white">
                     My Cart
                 </Heading>
+                <S.Content>
+                    <CartList />
 
-                {items?.length ? (
-                    <S.Content>
-                        <CartList items={items} total={total} />
-
-                        <PaymentOptions handlePayment={handlePayment} cards={cards} />
-                    </S.Content>
-                ) : (
-                    <Empty
-                        title="Your cart is empty"
-                        description="Go back to the store and explore great games and offers"
-                        hasLink
-                    />
-                )}
-
+                    <PaymentOptions handlePayment={handlePayment} cards={cards} />
+                </S.Content>
                 <Divider />
             </Container>
         </Base>

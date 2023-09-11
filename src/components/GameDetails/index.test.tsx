@@ -10,6 +10,7 @@ const props: GameDetailsProps = {
     releaseDate: "2020-11-21T23:00:00",
     rating: "BR0",
     genres: ["Action", "RPG"],
+    publisher: "Walk",
 };
 
 describe("<GameDetails />", () => {
