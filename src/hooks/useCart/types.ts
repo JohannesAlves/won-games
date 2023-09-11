@@ -6,7 +6,7 @@ type CartItem = {
 };
 
 export type CartContextData = {
-    items: CartItem[] | undefined;
+    items: CartItem[];
     quantity: number;
     total: string;
     isInCart: (id: string) => boolean;
