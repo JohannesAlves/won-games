@@ -1,6 +1,6 @@
-import { renderWithTheme } from "../../utils/tests/helpers";
+import { render } from "utils/test-utils";
+import { screen } from "utils/test-utils";
 import Banner from ".";
-import { screen } from "@testing-library/react";
 
 const args = {
     img: "https://source.unsplash.com/user/willianjusten/1042x580",
@@ -11,7 +11,7 @@ const args = {
 };
 describe("<Banner />", () => {
     it("should render correctly", () => {
-        const { container } = renderWithTheme(<Banner {...args} />);
+        const { container } = render(<Banner {...args} />);
         // verificar se o título, subtitle, imagem existe
         expect(screen.getByRole("heading", { name: /defy death/i })).toBeInTheDocument();
 
@@ -25,7 +25,7 @@ describe("<Banner />", () => {
     });
 
     it("should render a ribbon", () => {
-        renderWithTheme(
+        render(
             <Banner
                 {...args}
                 ribbon="My Ribbon"

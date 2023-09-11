@@ -1,11 +1,11 @@
-import { screen } from "@testing-library/react";
+import { screen } from "utils/test-utils";
 
 import FormSignIn from ".";
-import { renderWithTheme } from "utils/tests/helpers";
+import { render } from "utils/test-utils";
 
 describe("<FormSignIn />", () => {
     it("should render the forgot password link", () => {
-        renderWithTheme(<FormSignIn />);
+        render(<FormSignIn />);
 
         expect(screen.getByText(/Forgot your password?/i)).toHaveAttribute("href", "#");
     });

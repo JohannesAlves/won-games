@@ -1,7 +1,7 @@
-import { screen } from "@testing-library/react";
+import { screen } from "utils/test-utils";
 
 import TextContent from ".";
-import { renderWithTheme } from "utils/tests/helpers";
+import { render } from "utils/test-utils";
 
 const props = {
     title: "description",
@@ -10,7 +10,7 @@ const props = {
 
 describe("<TextContent />", () => {
     it("should render the heading", () => {
-        renderWithTheme(<TextContent {...props} />);
+        render(<TextContent {...props} />);
 
         expect(screen.getByRole("heading", { name: /description/i })).toBeInTheDocument();
     });

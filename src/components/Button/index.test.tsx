@@ -1,12 +1,12 @@
-import { renderWithTheme } from "../../utils/tests/helpers";
+import { render } from "utils/test-utils";
 import { AddShoppingCart } from "@styled-icons/material-outlined/AddShoppingCart";
 
 import Button from ".";
-import { screen } from "@testing-library/react";
+import { screen } from "utils/test-utils";
 
 describe("<Button />", () => {
     it("should be render medium button by default", () => {
-        renderWithTheme(<Button>Buy Now</Button>);
+        render(<Button>Buy Now</Button>);
 
         expect(screen.getByRole("button", { name: /Buy Now/i })).toHaveStyle({
             height: "4rem",
@@ -16,7 +16,7 @@ describe("<Button />", () => {
     });
 
     it("should be render small size when prop is passed", () => {
-        renderWithTheme(<Button size="small">Buy Now</Button>);
+        render(<Button size="small">Buy Now</Button>);
 
         expect(screen.getByRole("button", { name: /Buy Now/i })).toHaveStyle({
             height: "3rem",
@@ -25,7 +25,7 @@ describe("<Button />", () => {
     });
 
     it("should be render large size when prop is passed", () => {
-        renderWithTheme(<Button size="large">Buy Now</Button>);
+        render(<Button size="large">Buy Now</Button>);
 
         expect(screen.getByRole("button", { name: /Buy Now/i })).toHaveStyle({
             height: "5rem",
@@ -35,7 +35,7 @@ describe("<Button />", () => {
     });
 
     it("should be render full width button", () => {
-        renderWithTheme(<Button fullWidth>Buy Now</Button>);
+        render(<Button fullWidth>Buy Now</Button>);
 
         expect(screen.getByRole("button", { name: /Buy Now/i })).toHaveStyle({
             width: "100%",
@@ -43,7 +43,7 @@ describe("<Button />", () => {
     });
 
     it("should be render disabled button", () => {
-        renderWithTheme(<Button disabled>Buy Now</Button>);
+        render(<Button disabled>Buy Now</Button>);
 
         expect(screen.getByRole("button", { name: /Buy Now/i })).toHaveStyleRule(
             "cursor",
@@ -53,16 +53,14 @@ describe("<Button />", () => {
     });
 
     it("should be render button with icon", () => {
-        renderWithTheme(
-            <Button icon={<AddShoppingCart data-testid="icon" />}>Buy Now</Button>,
-        );
+        render(<Button icon={<AddShoppingCart data-testid="icon" />}>Buy Now</Button>);
 
         expect(screen.getByText(/buy now/i)).toBeInTheDocument();
         expect(screen.getByTestId(/icon/i)).toBeInTheDocument();
     });
 
     it("should be render Button as a Link", () => {
-        renderWithTheme(
+        render(
             <Button as="a" href="/link">
                 Buy Now
             </Button>,

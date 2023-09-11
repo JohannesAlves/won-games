@@ -1,11 +1,11 @@
 import "../../../.jest/match-media-mock";
-import { screen } from "@testing-library/react";
+import { screen } from "utils/test-utils";
 import Slider from ".";
-import { renderWithTheme } from "../../utils/tests/helpers";
+import { render } from "utils/test-utils";
 
 describe("<Slider />", () => {
     it("should be render children as slider item", () => {
-        const { container } = renderWithTheme(
+        const { container } = render(
             <Slider settings={{ slidesToShow: 1, infinite: false }}>
                 <p>item 1</p>
                 <p>item 2</p>

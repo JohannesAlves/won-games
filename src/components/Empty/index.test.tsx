@@ -1,5 +1,4 @@
-import { render, screen } from "@testing-library/react";
-import { renderWithTheme } from "utils/tests/helpers";
+import { render, screen } from "utils/test-utils";
 
 import Empty from ".";
 
@@ -10,7 +9,7 @@ const props = {
 
 describe("<Empty />", () => {
     it("should render the correctly", () => {
-        renderWithTheme(<Empty {...props} hasLink />);
+        render(<Empty {...props} hasLink />);
 
         expect(
             screen.getByRole("image", { name: /a gamer in a couch playing videogame/i }),

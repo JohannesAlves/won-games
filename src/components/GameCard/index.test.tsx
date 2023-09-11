@@ -1,5 +1,5 @@
 import { fireEvent, screen } from "@testing-library/react";
-import { renderWithTheme } from "../../utils/tests/helpers";
+import { render } from "utils/test-utils";
 import GameCard from ".";
 import theme from "../../styles/theme";
 
@@ -13,7 +13,7 @@ const props = {
 
 describe("<GameCard />", () => {
     it("should render correctly", () => {
-        renderWithTheme(<GameCard {...props} />);
+        render(<GameCard {...props} />);
 
         // verificar title, developer, imagem, preço
         expect(screen.getByRole("img", { name: props.title })).toHaveAttribute(
@@ -34,7 +34,7 @@ describe("<GameCard />", () => {
     });
 
     it("should render price", () => {
-        renderWithTheme(<GameCard {...props} />);
+        render(<GameCard {...props} />);
 
         const price = screen.getByText("$235.00");
         //price withotu line-through
@@ -44,7 +44,7 @@ describe("<GameCard />", () => {
     });
 
     it("should render promotional price", () => {
-        renderWithTheme(<GameCard {...props} promotionalPrice={200} />);
+        render(<GameCard {...props} promotionalPrice={200} />);
 
         const price = screen.getByText("$235.00");
         expect(price).toHaveStyle({ textDecoration: "line-through" });
@@ -59,14 +59,14 @@ describe("<GameCard />", () => {
     });
 
     it("should render icon fulfilled when favorite is true", () => {
-        renderWithTheme(<GameCard {...props} isFavorite />);
+        render(<GameCard {...props} isFavorite />);
 
         expect(screen.getByLabelText(/remove from wishlist/i)).toBeInTheDocument();
     });
 
     it("should call onFav method when favorite is clicked", () => {
         const onFav = jest.fn();
-        renderWithTheme(<GameCard {...props} isFavorite onFav={onFav} />);
+        render(<GameCard {...props} isFavorite onFav={onFav} />);
 
         fireEvent.click(screen.getAllByRole("button")[0]);
 
@@ -74,7 +74,7 @@ describe("<GameCard />", () => {
     });
 
     it("should be render with ribbon", () => {
-        renderWithTheme(
+        render(
             <GameCard
                 {...props}
                 ribbon="My Ribbon"

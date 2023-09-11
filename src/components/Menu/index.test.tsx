@@ -1,10 +1,10 @@
-import { renderWithTheme } from "../../utils/tests/helpers";
+import { render } from "utils/test-utils";
 import Menu from "./index";
 import { fireEvent, screen } from "@testing-library/react";
 
 describe("<Menu />", () => {
     it("should be a render menu", () => {
-        renderWithTheme(<Menu />);
+        render(<Menu />);
 
         expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument;
         expect(screen.getByLabelText(/search/i)).toBeInTheDocument;
@@ -12,7 +12,7 @@ describe("<Menu />", () => {
     });
 
     it("should handle the open/close menu", () => {
-        renderWithTheme(<Menu />);
+        render(<Menu />);
 
         // Selecionar o elemento
         const fullMenuElement = screen.getByRole("navigation", { hidden: true });
@@ -34,13 +34,13 @@ describe("<Menu />", () => {
     });
 
     it("should show register box when logged out", () => {
-        renderWithTheme(<Menu />);
+        render(<Menu />);
 
         expect(screen.getByText(/sign up/i)).toBeInTheDocument();
     });
 
     it("should show wishlight and account when logged in", () => {
-        renderWithTheme(<Menu username="will" />);
+        render(<Menu username="will" />);
 
         expect(screen.getAllByText(/my profile/i)).toHaveLength(2);
         expect(screen.getAllByText(/wishlist/i)).toHaveLength(2);

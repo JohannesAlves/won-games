@@ -1,25 +1,25 @@
-import { screen } from "@testing-library/react";
+import { screen } from "utils/test-utils";
 
 import CartIcon from ".";
-import { renderWithTheme } from "utils/tests/helpers";
+import { render } from "utils/test-utils";
 
 describe("<CartIcon />", () => {
     it("should render the cart without badge", () => {
-        renderWithTheme(<CartIcon />);
+        render(<CartIcon />);
 
         expect(screen.getByLabelText(/shopping cart/i)).toBeInTheDocument();
         expect(screen.queryByLabelText(/cart items/i)).not.toBeInTheDocument();
     });
 
     it("should render the cart with badge", () => {
-        renderWithTheme(<CartIcon quantity={1} />);
+        render(<CartIcon quantity={1} />);
 
         expect(screen.queryByLabelText(/cart items/i)).toBeInTheDocument();
         expect(screen.getByText(/1/i)).toBeInTheDocument();
     });
 
     it("should not render badge with negative values", () => {
-        renderWithTheme(<CartIcon quantity={-1} />);
+        render(<CartIcon quantity={-1} />);
 
         expect(screen.queryByLabelText(/cart items/i)).not.toBeInTheDocument();
     });
