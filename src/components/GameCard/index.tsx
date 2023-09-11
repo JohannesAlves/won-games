@@ -1,16 +1,13 @@
 import Ribbon from "../../components/Ribbon";
-import Button from "../../components/Button";
 import * as S from "./styles";
 import { GameCardProps } from "./types";
-import {
-    AddShoppingCart,
-    FavoriteBorder,
-    Favorite,
-} from "styled-icons/material-outlined";
+import { FavoriteBorder, Favorite } from "styled-icons/material-outlined";
 import Link from "next/link";
 import formatPrice from "utils/formatPrice";
+import CartButton from "components/CartButton";
 
 export default function GameCard({
+    id,
     slug,
     developer,
     img,
@@ -56,7 +53,7 @@ export default function GameCard({
                         <S.Price isPromotional>{formatPrice(price)}</S.Price>
                     )}
                     <S.Price>{formatPrice(promotionalPrice || price)}</S.Price>
-                    <Button icon={<AddShoppingCart />} size="small" />
+                    <CartButton id={id} />
                 </S.BuyBox>
             </S.Content>
         </S.Wrapper>
