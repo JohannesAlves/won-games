@@ -8,7 +8,7 @@ const TextField = ({
     label,
     name,
     initialValue = "",
-    onInput,
+    onInputChange,
     hasIcon,
     iconToRight,
     disabled = false,
@@ -21,7 +21,7 @@ const TextField = ({
         const newValue = e.currentTarget.value;
         setValue(newValue);
 
-        !!onInput && onInput(newValue);
+        !!onInputChange && onInputChange(newValue);
     };
 
     return (
