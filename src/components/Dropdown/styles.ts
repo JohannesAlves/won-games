@@ -14,7 +14,6 @@ export const Title = styled.div`
 
 export const Content = styled.div`
     ${({ theme }) => css`
-        z-index: ${theme.layers.alwaysOnTop};
         display: flex;
         flex-direction: column;
         background: ${theme.colors.white};
@@ -22,6 +21,7 @@ export const Content = styled.div`
         margin-top: ${theme.spacings.small};
         position: absolute;
         right: 0;
+        z-index: ${theme.layers.alwaysOnTop};
 
         &::before {
             content: "";
@@ -68,8 +68,11 @@ export const Wrapper = styled.div<WrapperProps>`
     ${({ theme, isOpen }) => css`
         position: relative;
         width: max-content;
-        ${Content}, ${Overlay} {
+
+        ${Content},
+        ${Overlay} {
             transition: transform 0.2s ease-in, opacity ${theme.transition.default};
+
             ${isOpen && wrapperModifiers.open()}
             ${!isOpen && wrapperModifiers.close()}
         }
