@@ -1,4 +1,5 @@
 export type GameItemProps = {
+    id: string;
     img: string;
     title: string;
     price: string;
