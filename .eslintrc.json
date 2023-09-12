@@ -30,6 +30,9 @@
     },
     "plugins": [],
     "rules": {
+        "prettier/prettier": {
+            "arrowParens": 0
+        },
         "@typescript-eslint/no-non-null-assertion": "off",
         "react/prop-types": "off",
         "@next/next/no-img-element": "off",
