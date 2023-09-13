@@ -33,8 +33,9 @@ type LinkProps = {
     isActive?: boolean;
 };
 
-export const Anchor = styled(Link)<LinkProps>`
+export const Anchor = styled.a<LinkProps>`
     ${({ theme, isActive }) => css`
+        cursor: pointer;
         text-decoration: none;
         display: flex;
         align-items: center;

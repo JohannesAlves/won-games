@@ -8,6 +8,7 @@ import { ChevronDown } from "@styled-icons/boxicons-regular/ChevronDown";
 import * as S from "./styles";
 import { UserDropdownProps } from "./types";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 
 const UserDropdown = ({ username }: UserDropdownProps) => (
     <Dropdown
@@ -20,7 +21,7 @@ const UserDropdown = ({ username }: UserDropdownProps) => (
         }
     >
         <S.Nav>
-            <Link href="/profile" style={{ textDecoration: "none" }}>
+            <Link href="/profile/me" style={{ textDecoration: "none" }}>
                 <S.Link>
                     <AccountCircle size={24} />
                     <span>My Profile</span>
@@ -32,13 +33,11 @@ const UserDropdown = ({ username }: UserDropdownProps) => (
                     <span>My Wishlist</span>
                 </S.Link>
             </Link>
-            <Link href="/logout" style={{ textDecoration: "none" }}>
-                <S.Link>
-                    {" "}
-                    <ExitToApp size={24} />
-                    <span>Sign Out</span>
-                </S.Link>
-            </Link>
+            <S.Link role="button" onClick={() => signOut()}>
+                {" "}
+                <ExitToApp size={24} />
+                <span>Sign Out</span>
+            </S.Link>
         </S.Nav>
     </Dropdown>
 );

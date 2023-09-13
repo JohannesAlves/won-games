@@ -6,6 +6,7 @@ import {
 } from "styled-icons/material-outlined";
 import * as S from "./styles";
 import { ProfileMenuProps } from "./types";
+import { signOut } from "next-auth/react";
 
 const ProfileMenu = ({ activeLink }: ProfileMenuProps) => (
     <S.Nav>
@@ -36,7 +37,7 @@ const ProfileMenu = ({ activeLink }: ProfileMenuProps) => (
             <span>My orders</span>
         </S.Anchor>
 
-        <S.Anchor href="/logout">
+        <S.Anchor role="button" onClick={() => signOut()}>
             <ExitToApp size={24} />
             <span>Sign Out</span>
         </S.Anchor>
