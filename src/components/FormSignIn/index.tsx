@@ -11,10 +11,12 @@ import { useRouter } from "next/router";
 
 const FormSignIn = () => {
     const [values, setValues] = useState({});
+    const [loading, setLoading] = useState(false);
     const { push } = useRouter();
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+        setLoading(true);
 
         const result = await signIn("credentials", {
             ...values,
@@ -25,6 +27,8 @@ const FormSignIn = () => {
         if (result?.url) {
             return push(result.url);
         }
+
+        setLoading(false);
 
         console.error("incorrect credentials");
     };
@@ -52,9 +56,13 @@ const FormSignIn = () => {
                 />
                 <S.ForgotPassword href="#">Forgot your password?</S.ForgotPassword>
 
-                <Button size="large" fullWidth type="submit">
-                    Sign in Now
-                </Button>
+                {loading ? (
+                    <S.FormLoading />
+                ) : (
+                    <Button size="large" fullWidth type="submit">
+                        Sign in Now
+                    </Button>
+                )}
 
                 <S.FormLink>
                     Don&apos;t have an account? <Link href="/sign-up">Sign Up</Link>
