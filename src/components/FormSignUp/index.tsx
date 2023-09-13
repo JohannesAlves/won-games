@@ -9,6 +9,7 @@ import { useState } from "react";
 import { UsersPermissionsRegisterInput } from "graphql/generated/globalTypes";
 import { useMutation } from "@apollo/client";
 import { MUTATION_REGISTER } from "graphql/mutations/register";
+import { signIn } from "next-auth/react";
 
 const FormSignUp = () => {
     const [values, setValues] = useState<UsersPermissionsRegisterInput>({
@@ -16,7 +17,17 @@ const FormSignUp = () => {
         password: "",
         email: "",
     });
-    const [createUser, { data }] = useMutation(MUTATION_REGISTER);
+    const [createUser, { error }] = useMutation(MUTATION_REGISTER, {
+        onError: (error) => console.error(error),
+        onCompleted: () => {
+            !error &&
+                signIn("credentials", {
+                    email: values.email,
+                    password: values.password,
+                    callbackUrl: "/",
+                });
+        },
+    });
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
