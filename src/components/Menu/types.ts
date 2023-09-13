@@ -3,5 +3,5 @@ export type MenuFullProps = {
 };
 
 export type MenuProps = {
-    username?: string;
+    username?: string | null | undefined;
 };

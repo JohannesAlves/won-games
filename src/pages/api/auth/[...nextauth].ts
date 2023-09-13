@@ -38,10 +38,10 @@ const options: AuthOptions = {
         }),
     ],
     callbacks: {
-        async session({ session, user }: GenericObject) {
+        async session({ session, token }: GenericObject) {
             // Send properties to the client, like an access_token and user id from a provider.
-            session.jwt = user.jwt;
-            session.id = user.id;
+            session.jwt = token.jwt;
+            session.id = token.id;
 
             return Promise.resolve(session);
         },
