@@ -8,7 +8,7 @@ describe("<ProfileMenu />", () => {
     it("should render the menu", () => {
         const { container } = render(<ProfileMenu />);
 
-        expect(screen.getAllByRole("link")).toHaveLength(4);
+        expect(screen.getAllByRole("link")).toHaveLength(3);
         expect(container.firstChild).toMatchSnapshot();
     });
 

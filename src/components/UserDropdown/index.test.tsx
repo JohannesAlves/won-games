@@ -15,6 +15,6 @@ describe("<UserDropdown />", () => {
         const title = screen.getByText("username");
 
         fireEvent.click(title);
-        expect(screen.getAllByRole("link")).toHaveLength(3);
+        expect(screen.getAllByRole("link")).toHaveLength(2);
     });
 });
