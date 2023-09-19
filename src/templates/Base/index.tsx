@@ -7,12 +7,12 @@ import { Container } from "components/Container";
 import { useSession } from "next-auth/react";
 
 const Base = ({ children }: BaseTemplateProps) => {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
 
     return (
         <S.Wrapper>
             <Container>
-                <Menu username={session?.user?.name} />
+                <Menu username={session?.user?.name} status={status} />
             </Container>
             <S.Content>{children}</S.Content>
             <S.SectionFooter>

@@ -14,7 +14,7 @@ import CartDropdown from "components/CartDropdown";
 import CartIcon from "components/CartIcon";
 import UserDropdown from "components/UserDropdown";
 
-export default function Menu({ username }: MenuProps) {
+export default function Menu({ username, status }: MenuProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -43,70 +43,80 @@ export default function Menu({ username }: MenuProps) {
                 </Link>
             </S.LogoWrapper>
 
-            <S.MenuGroup>
-                <S.IconWrapper>
-                    <SearchIcon aria-label="Search" />
-                </S.IconWrapper>
-                <S.IconWrapper>
-                    <MediaMatch greaterThan="medium">
-                        <CartDropdown />
-                    </MediaMatch>
-                    <MediaMatch lessThan="medium">
-                        <Link href="/cart">
-                            <CartIcon />
-                        </Link>
-                    </MediaMatch>
-                </S.IconWrapper>
-                <MediaMatch greaterThan="medium">
-                    {!username ? (
-                        <Link href="/sign-in">
-                            <Button>Sign in</Button>
-                        </Link>
-                    ) : (
-                        <UserDropdown username={username} />
-                    )}
-                </MediaMatch>
-            </S.MenuGroup>
+            {status !== "loading" && (
+                <>
+                    <S.MenuGroup>
+                        <S.IconWrapper>
+                            <SearchIcon aria-label="Search" />
+                        </S.IconWrapper>
+                        <S.IconWrapper>
+                            <MediaMatch greaterThan="medium">
+                                <CartDropdown />
+                            </MediaMatch>
+                            <MediaMatch lessThan="medium">
+                                <Link href="/cart">
+                                    <CartIcon />
+                                </Link>
+                            </MediaMatch>
+                        </S.IconWrapper>
+                        <MediaMatch greaterThan="medium">
+                            {!username ? (
+                                <Link href="/sign-in">
+                                    <Button>Sign in</Button>
+                                </Link>
+                            ) : (
+                                <UserDropdown username={username} />
+                            )}
+                        </MediaMatch>
+                    </S.MenuGroup>
 
-            <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
-                <CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
-                <S.MenuNav>
-                    <Link href="/" style={{ textDecoration: "none" }}>
-                        <S.MenuLink>Home</S.MenuLink>
-                    </Link>
-                    <Link href="/games" style={{ textDecoration: "none" }}>
-                        <S.MenuLink>Explore</S.MenuLink>
-                    </Link>
-
-                    {!!username && (
-                        <>
-                            <Link href="/profile/me" style={{ textDecoration: "none" }}>
-                                <S.MenuLink>My Profile</S.MenuLink>
+                    <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
+                        <CloseIcon
+                            aria-label="Close Menu"
+                            onClick={() => setIsOpen(false)}
+                        />
+                        <S.MenuNav>
+                            <Link href="/" style={{ textDecoration: "none" }}>
+                                <S.MenuLink>Home</S.MenuLink>
                             </Link>
-                            <Link
-                                href="/profile/wishlist"
-                                style={{ textDecoration: "none" }}
-                            >
-                                <S.MenuLink>Wishlist</S.MenuLink>
+                            <Link href="/games" style={{ textDecoration: "none" }}>
+                                <S.MenuLink>Explore</S.MenuLink>
                             </Link>
-                        </>
-                    )}
-                </S.MenuNav>
 
-                {!username && (
-                    <S.RegisterBox>
-                        <Link href="/sign-in">
-                            <Button fullWidth size="large">
-                                Sign In
-                            </Button>
-                        </Link>
-                        <span>or</span>
-                        <S.CreateAccount href="/sign-up" title="Sign Up">
-                            Sign Up
-                        </S.CreateAccount>
-                    </S.RegisterBox>
-                )}
-            </S.MenuFull>
+                            {!!username && (
+                                <>
+                                    <Link
+                                        href="/profile/me"
+                                        style={{ textDecoration: "none" }}
+                                    >
+                                        <S.MenuLink>My Profile</S.MenuLink>
+                                    </Link>
+                                    <Link
+                                        href="/profile/wishlist"
+                                        style={{ textDecoration: "none" }}
+                                    >
+                                        <S.MenuLink>Wishlist</S.MenuLink>
+                                    </Link>
+                                </>
+                            )}
+                        </S.MenuNav>
+
+                        {!username && (
+                            <S.RegisterBox>
+                                <Link href="/sign-in">
+                                    <Button fullWidth size="large">
+                                        Sign In
+                                    </Button>
+                                </Link>
+                                <span>or</span>
+                                <S.CreateAccount href="/sign-up" title="Sign Up">
+                                    Sign Up
+                                </S.CreateAccount>
+                            </S.RegisterBox>
+                        )}
+                    </S.MenuFull>
+                </>
+            )}
         </S.Wrapper>
     );
 }

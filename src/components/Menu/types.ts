@@ -4,4 +4,5 @@ export type MenuFullProps = {
 
 export type MenuProps = {
     username?: string | null | undefined;
+    status?: "authenticated" | "loading" | "unauthenticated";
 };
