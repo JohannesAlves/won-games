@@ -8,16 +8,16 @@
 // ====================================================
 
 export interface QueryProfileMe_user {
-  __typename: "UsersPermissionsUser";
-  id: string;
-  email: string;
-  username: string;
+    __typename: "UsersPermissionsUser";
+    id: string;
+    email: string;
+    username: string;
 }
 
 export interface QueryProfileMe {
-  user: QueryProfileMe_user | null;
+    me: QueryProfileMe_user | null;
 }
 
 export interface QueryProfileMeVariables {
-  identifier: string;
+    identifier: string;
 }
