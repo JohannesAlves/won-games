@@ -8,15 +8,27 @@ import Button from "components/Button";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import { FieldErrors } from "utils/validations/types";
+import { signInValidate } from "utils/validations";
 
 const FormSignIn = () => {
-    const [values, setValues] = useState({});
+    const [formError, setFormError] = useState("");
+    const [fieldError, setFieldError] = useState<FieldErrors>({});
+    const [values, setValues] = useState({ email: "", password: "" });
     const [loading, setLoading] = useState(false);
     const { push } = useRouter();
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setLoading(true);
+
+        const errors = signInValidate(values);
+
+        if (Object.keys(errors).length) {
+            setFieldError(errors);
+            setLoading(false);
+            return;
+        }
 
         const result = await signIn("credentials", {
             ...values,
@@ -30,7 +42,7 @@ const FormSignIn = () => {
 
         setLoading(false);
 
-        console.error("incorrect credentials");
+        setFormError("username or password is invalid");
     };
 
     const handleInput = (field: string, value: string) => {
@@ -39,11 +51,13 @@ const FormSignIn = () => {
 
     return (
         <S.Wrapper>
+            {!!formError && <S.FormError>{formError}</S.FormError>}
             <form onSubmit={handleSubmit}>
                 <TextField
                     name="email"
                     placeholder="Email"
                     type="email"
+                    error={fieldError?.email}
                     onInputChange={(value) => handleInput("email", value)}
                     hasIcon={<Email />}
                 />
@@ -51,6 +65,7 @@ const FormSignIn = () => {
                     name="password"
                     placeholder="Password"
                     type="password"
+                    error={fieldError?.password}
                     onInputChange={(value) => handleInput("password", value)}
                     hasIcon={<Lock />}
                 />
