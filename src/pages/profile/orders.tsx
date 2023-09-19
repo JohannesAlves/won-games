@@ -3,6 +3,8 @@ import OrdersList from "components/OrdersList";
 import { OrdersListProps } from "components/OrdersList/types";
 
 import mockOrders from "components/OrdersList/mock";
+import { GetServerSidePropsContext } from "next";
+import protectedRoutes from "utils/protecetedRoutes";
 
 export default function Orders(props: OrdersListProps) {
     return (
@@ -12,10 +14,13 @@ export default function Orders(props: OrdersListProps) {
     );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const session = await protectedRoutes(context);
+
     return {
         props: {
             items: mockOrders,
+            session,
         },
     };
 }
