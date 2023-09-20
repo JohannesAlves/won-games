@@ -1,20 +1,18 @@
-import Link from "next/link";
-import { Email, Lock } from "styled-icons/material-outlined";
+import { Email } from "styled-icons/material-outlined";
 
 import * as S from "./styles";
 
 import TextField from "components/TextField";
 import Button from "components/Button";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FieldErrors } from "utils/validations/types";
-import { signInValidate } from "utils/validations";
+import { forgotValidate } from "utils/validations";
 
-const FormSignIn = () => {
+const FormForgotPassword = () => {
     const [formError, setFormError] = useState("");
     const [fieldError, setFieldError] = useState<FieldErrors>({});
-    const [values, setValues] = useState({ email: "", password: "" });
+    const [values, setValues] = useState({ email: "" });
     const [loading, setLoading] = useState(false);
     const routes = useRouter();
     const { push, query } = routes;
@@ -23,22 +21,12 @@ const FormSignIn = () => {
         event.preventDefault();
         setLoading(true);
 
-        const errors = signInValidate(values);
+        const errors = forgotValidate(values);
 
         if (Object.keys(errors).length) {
             setFieldError(errors);
             setLoading(false);
             return;
-        }
-
-        const result = await signIn("credentials", {
-            ...values,
-            redirect: false,
-            callbackUrl: `${window.location.origin}${query?.callbackUrl || ""}`,
-        });
-
-        if (result?.url) {
-            return push(result.url);
         }
 
         setLoading(false);
@@ -62,32 +50,17 @@ const FormSignIn = () => {
                     onInputChange={(value) => handleInput("email", value)}
                     hasIcon={<Email />}
                 />
-                <TextField
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    error={fieldError?.password}
-                    onInputChange={(value) => handleInput("password", value)}
-                    hasIcon={<Lock />}
-                />
-                <S.ForgotPassword href="/forgot-password">
-                    Forgot your password?
-                </S.ForgotPassword>
 
                 {loading ? (
                     <S.FormLoading />
                 ) : (
                     <Button size="large" fullWidth type="submit">
-                        Sign in Now
+                        Send email
                     </Button>
                 )}
-
-                <S.FormLink>
-                    Don&apos;t have an account? <Link href="/sign-up">Sign Up</Link>
-                </S.FormLink>
             </form>
         </S.Wrapper>
     );
 };
 
-export default FormSignIn;
+export default FormForgotPassword;
