@@ -24,6 +24,13 @@ const customJestConfig = {
     modulePaths: ["<rootDir>"],
     moduleDirectories: ["node_modules", "src"],
     modulePathIgnorePatterns: ["<rootDir>/generators"],
+    extensionsToTreatAsEsm: [".ts"],
+    globals: {
+        "ts-jest": {
+            tsconfig: "tsconfig.json",
+            useESM: true,
+        },
+    },
 };
 
 module.exports = createJestConfig(customJestConfig);

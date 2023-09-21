@@ -1,5 +1,11 @@
-global.fetch = require("node-fetch");
+import fetch, { Headers, Request, Response } from "node-fetch";
 
+if (!globalThis.fetch) {
+    globalThis.fetch = fetch;
+    globalThis.Headers = Headers;
+    globalThis.Request = Request;
+    globalThis.Response = Response;
+}
 import { server } from "../src/utils/mockServer/server";
 
 beforeAll(() => {
