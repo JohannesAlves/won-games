@@ -32,6 +32,15 @@ describe("<FormForgotPassword />", () => {
         expect(await screen.findByText(/must be a valid email/i)).toBeInTheDocument();
     });
 
+    it("should return error on invalid email", async () => {
+        render(<FormForgotPassword />);
+
+        await userEvent.type(screen.getByPlaceholderText(/email/i), "false@email.com");
+        userEvent.click(screen.getByRole("button", { name: /send email/i }));
+
+        expect(await screen.findByText(/this email does not exist/i)).toBeInTheDocument();
+    });
+
     it("should autofill if comes via logged user", () => {
         query = { email: "valid@email.com" };
         render(<FormForgotPassword />);
