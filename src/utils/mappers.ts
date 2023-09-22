@@ -4,9 +4,10 @@ import {
     QueryHome_sections_freeGames_highlight,
 } from "graphql/generated/QueryHome";
 import formatPrice from "./formatPrice";
+import { QueryWishlist_wishlists_games } from "graphql/generated/QueryWishlist";
 
 export const bannerMapper = (banners: QueryHome_banners[]) => {
-    return banners.map(banner => ({
+    return banners.map((banner) => ({
         img: `http://localhost:1337${banner.image?.url}`,
         title: banner.title,
         subtitle: banner.subtitle,
@@ -18,8 +19,10 @@ export const bannerMapper = (banners: QueryHome_banners[]) => {
     }));
 };
 
-export const gamesMapper = (games: QueryGames_games[] | null | undefined) => {
-    return games?.map(game => ({
+export const gamesMapper = (
+    games: QueryGames_games[] | QueryWishlist_wishlists_games[] | null | undefined,
+) => {
+    return games?.map((game) => ({
         id: game.id,
         title: game.name,
         slug: game.slug,
@@ -44,7 +47,7 @@ export const highlightMapper = (
 
 export const cartMapper = (games: QueryGames_games[] | null | undefined) => {
     return games
-        ? games?.map(game => ({
+        ? games?.map((game) => ({
               id: game.id,
               img: `http://localhost:1337${game.cover?.url}`,
               price: formatPrice(game.price),
