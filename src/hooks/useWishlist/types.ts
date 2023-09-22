@@ -5,7 +5,6 @@ export type WishlistContextData = {
     isInWishlist: (id: string) => boolean;
     addToWishlist: (id: string) => void;
     removeFromWishlist: (id: string) => void;
-    status: "loading" | "authenticated" | "unauthenticated";
     loading: boolean;
 };
 
