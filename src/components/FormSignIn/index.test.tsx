@@ -18,6 +18,9 @@ describe("<FormSignIn />", () => {
     it("should render the forgot password link", () => {
         render(<FormSignIn />);
 
-        expect(screen.getByText(/Forgot your password?/i)).toHaveAttribute("href", "#");
+        expect(screen.getByText(/Forgot your password?/i)).toHaveAttribute(
+            "href",
+            "/forgot-password",
+        );
     });
 });

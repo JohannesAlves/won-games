@@ -13,6 +13,19 @@ const props = {
     games: gamesMock.slice(0, 1),
 };
 
+const mockSession = {
+    jwt: "123",
+    user: {
+        name: "John Doe",
+    },
+    expires: "",
+};
+
+// Mock the useSession hook
+jest.mock("next-auth/react", () => ({
+    useSession: jest.fn(() => ({ data: mockSession })),
+}));
+
 describe("<Showcase />", () => {
     it("should render full showcase", () => {
         render(<Showcase {...props} />);

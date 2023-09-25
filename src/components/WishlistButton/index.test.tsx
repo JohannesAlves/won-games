@@ -61,6 +61,8 @@ describe("<WishlistButton />", () => {
             removeFromWishlist: jest.fn(),
         };
 
+        ("");
+
         render(<WishlistButton id="1" hasText />, { wishlistProviderProps });
 
         act(() => {

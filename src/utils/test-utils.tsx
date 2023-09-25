@@ -8,6 +8,7 @@ import { CartContextData } from "hooks/useCart/types";
 import { ReactElement } from "react";
 import { ThemeProvider } from "styled-components";
 import theme from "styles/theme";
+import { SessionProvider } from "next-auth/react";
 
 type CustomRenderProps = {
     cartProviderProps?: CartContextData;

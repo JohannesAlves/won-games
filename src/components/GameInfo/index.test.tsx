@@ -10,6 +10,19 @@ const props = {
     price: 210,
 };
 
+const mockSession = {
+    jwt: "123",
+    user: {
+        name: "John Doe",
+    },
+    expires: "",
+};
+
+// Mock the useSession hook
+jest.mock("next-auth/react", () => ({
+    useSession: jest.fn(() => ({ data: mockSession })),
+}));
+
 describe("<GameInfo />", () => {
     it("should render game informations", () => {
         render(<GameInfo {...props} />);

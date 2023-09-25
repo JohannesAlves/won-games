@@ -26,6 +26,19 @@ jest.mock("templates/Base", () => ({
     },
 }));
 
+const mockSession = {
+    jwt: "123",
+    user: {
+        name: "John Doe",
+    },
+    expires: "",
+};
+
+// Mock the useSession hook
+jest.mock("next-auth/react", () => ({
+    useSession: jest.fn(() => ({ data: mockSession })),
+}));
+
 describe("<Games />", () => {
     it("should render sections", async () => {
         render(

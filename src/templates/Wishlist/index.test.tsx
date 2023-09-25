@@ -12,6 +12,19 @@ const props = {
     recommendedGames: gamesMock,
 };
 
+const mockSession = {
+    jwt: "123",
+    user: {
+        name: "John Doe",
+    },
+    expires: "",
+};
+
+// Mock the useSession hook
+jest.mock("next-auth/react", () => ({
+    useSession: jest.fn(() => ({ data: mockSession })),
+}));
+
 jest.mock("templates/Base", () => ({
     __esModule: true,
     default: function Mock({ children }: { children: React.ReactNode }) {

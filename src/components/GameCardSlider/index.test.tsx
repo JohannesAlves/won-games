@@ -5,6 +5,19 @@ import { render } from "utils/test-utils";
 import GameCardSlider from ".";
 import items from "./mock";
 
+const mockSession = {
+    jwt: "123",
+    user: {
+        name: "John Doe",
+    },
+    expires: "",
+};
+
+// Mock the useSession hook
+jest.mock("next-auth/react", () => ({
+    useSession: jest.fn(() => ({ data: mockSession })),
+}));
+
 describe("<GameSlider />", () => {
     it("should render with 4 active items", () => {
         const { container } = render(<GameCardSlider items={items} />);
