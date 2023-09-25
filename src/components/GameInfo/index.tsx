@@ -8,6 +8,7 @@ import * as S from "./styles";
 import { GameInfoProps } from "./types";
 import formatPrice from "utils/formatPrice";
 import CartButton from "components/CartButton";
+import WishlistButton from "components/WishlistButton";
 
 const GameInfo = ({ id, title, description, price }: GameInfoProps) => (
     <S.Wrapper>
@@ -21,9 +22,7 @@ const GameInfo = ({ id, title, description, price }: GameInfoProps) => (
 
         <S.ButtonsWrapper>
             <CartButton id={id} size="large" hasText />
-            <Button icon={<FavoriteBorder />} size="large" minimal>
-                Wishlist
-            </Button>
+            <WishlistButton id={id} hasText size="large" />
         </S.ButtonsWrapper>
     </S.Wrapper>
 );

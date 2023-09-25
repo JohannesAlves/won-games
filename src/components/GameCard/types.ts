@@ -8,8 +8,6 @@ export type GameCardProps = {
     img: string;
     price: number;
     promotionalPrice?: number;
-    isFavorite?: boolean;
-    onFav?: () => void;
     ribbon?: string;
     ribbonColor?: RibbonColors;
     ribbonSize?: RibbonSizes;

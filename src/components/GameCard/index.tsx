@@ -1,10 +1,10 @@
 import Ribbon from "../../components/Ribbon";
 import * as S from "./styles";
 import { GameCardProps } from "./types";
-import { FavoriteBorder, Favorite } from "styled-icons/material-outlined";
 import Link from "next/link";
 import formatPrice from "utils/formatPrice";
 import CartButton from "components/CartButton";
+import WishlistButton from "components/WishlistButton";
 
 export default function GameCard({
     id,
@@ -14,8 +14,6 @@ export default function GameCard({
     price,
     title,
     promotionalPrice,
-    isFavorite = false,
-    onFav,
     ribbon,
     ribbonColor = "primary",
     ribbonSize = "small",
@@ -40,14 +38,9 @@ export default function GameCard({
                         <S.Developer>{developer}</S.Developer>
                     </S.Info>
                 </Link>
-                <S.FavButton role="button" onClick={onFav}>
-                    {isFavorite ? (
-                        <Favorite aria-label="remove from wishlist"></Favorite>
-                    ) : (
-                        <FavoriteBorder aria-label="add to wishlist" />
-                    )}
+                <S.FavButton>
+                    <WishlistButton id={id} />
                 </S.FavButton>
-
                 <S.BuyBox>
                     {!!promotionalPrice && (
                         <S.Price isPromotional>{formatPrice(price)}</S.Price>
