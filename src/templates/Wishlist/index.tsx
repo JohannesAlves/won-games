@@ -8,41 +8,42 @@ import { Divider } from "components/Divider";
 import { Grid } from "components/Grid";
 import Base from "templates/Base";
 import Empty from "components/Empty";
+import { useWishlist } from "hooks/useWishlist";
 
-const Wishlist = ({
-    games = [],
-    recommendedGames,
-    recommendedHighlight,
-}: WishlistTemplateProps) => (
-    <Base>
-        <Container>
-            <Heading lineLeft lineColor="secondary" color="white">
-                Wishlist
-            </Heading>
+const Wishlist = ({ recommendedGames, recommendedHighlight }: WishlistTemplateProps) => {
+    const { items } = useWishlist();
 
-            {games?.length ? (
-                <Grid>
-                    {games?.map((game, index) => (
-                        <GameCard key={`wishlist-${index}`} {...game} />
-                    ))}
-                </Grid>
-            ) : (
-                <Empty
-                    title="Your wishlist is empty"
-                    description="Games added to your wishlist will appear here"
-                    hasLink
-                />
-            )}
+    return (
+        <Base>
+            <Container>
+                <Heading lineLeft lineColor="secondary" color="white">
+                    Wishlist
+                </Heading>
 
-            <Divider />
-        </Container>
+                {items?.length ? (
+                    <Grid>
+                        {items?.map((game, index) => (
+                            <GameCard key={`wishlist-${index}`} {...game} />
+                        ))}
+                    </Grid>
+                ) : (
+                    <Empty
+                        title="Your wishlist is empty"
+                        description="Games added to your wishlist will appear here"
+                        hasLink
+                    />
+                )}
 
-        <ShowCase
-            title="You may like this games"
-            games={recommendedGames}
-            highlight={recommendedHighlight}
-        />
-    </Base>
-);
+                <Divider />
+            </Container>
+
+            <ShowCase
+                title="You may like this games"
+                games={recommendedGames}
+                highlight={recommendedHighlight}
+            />
+        </Base>
+    );
+};
 
 export default Wishlist;
