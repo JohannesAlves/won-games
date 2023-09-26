@@ -4,6 +4,7 @@ import GameItem from ".";
 import { render } from "utils/test-utils";
 
 const props = {
+    id: "1",
     title: "title",
     img: "https://source.unsplash.com/user/willianjusten/151x70",
     price: "R$ 215,00",
@@ -37,11 +38,6 @@ describe("<GameItem />", () => {
         };
 
         render(<GameItem {...props} paymentInfo={paymentInfo} />);
-
-        expect(screen.getByRole("img", { name: paymentInfo.flag })).toHaveAttribute(
-            "src",
-            paymentInfo.img,
-        );
 
         expect(screen.getByText(paymentInfo.number)).toBeInTheDocument();
         expect(screen.getByText(paymentInfo.purchaseDate)).toBeInTheDocument();

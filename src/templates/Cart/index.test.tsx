@@ -1,14 +1,29 @@
 import { screen } from "utils/test-utils";
 import { render } from "utils/test-utils";
-
+import "../../../.jest/match-media-mock";
 import gamesMock from "components/GameCardSlider/mock";
 import highlightMock from "components/Highlight/mock";
 
 import Cart from ".";
 
+const mockSession = {
+    id: "1",
+    jwt: "123",
+    user: {
+        name: "John Doe",
+    },
+    expires: "",
+};
+
+jest.mock("next-auth/react", () => ({
+    useSession: jest.fn(() => ({ data: mockSession })),
+}));
+
 const props = {
+    session: mockSession,
     recommendedHighlight: highlightMock,
     recommendedGames: gamesMock,
+    recommendedTitle: "hi",
 };
 
 jest.mock("templates/Base", () => ({
@@ -45,7 +60,7 @@ describe("<Cart />", () => {
 
         expect(screen.getByRole("heading", { name: /my cart/i })).toBeInTheDocument();
         expect(screen.getByTestId("Mock Cart")).toBeInTheDocument();
-        expect(screen.getByTestId("Mock PaymentOptions")).toBeInTheDocument();
+        expect(screen.getByTestId("Mock PaymentForm")).toBeInTheDocument();
         expect(screen.queryByTestId("Mock Empty")).not.toBeInTheDocument();
     });
 });
