@@ -45,7 +45,9 @@ export default function GameCard({
                     {!!promotionalPrice && (
                         <S.Price isPromotional>{formatPrice(price)}</S.Price>
                     )}
-                    <S.Price>{formatPrice(promotionalPrice || price)}</S.Price>
+                    <S.Price>
+                        {price === 0 ? "Free" : formatPrice(promotionalPrice || price)}
+                    </S.Price>
                     <CartButton id={id} />
                 </S.BuyBox>
             </S.Content>
