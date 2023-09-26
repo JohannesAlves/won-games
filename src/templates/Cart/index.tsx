@@ -1,32 +1,37 @@
-import * as S from "./styles";
+import { initializeApollo } from "utils/apollo";
+import { QueryRecommended } from "graphql/generated/QueryRecommended";
+import { QUERY_RECOMMENDED } from "graphql/queries/recommended";
+import { gamesMapper, highlightMapper } from "utils/mappers";
 
+import Cart from "templates/Cart";
+
+import itemsMock from "components/CartList/mock";
+import cardsMock from "components/PaymentOptions/mock";
+import { GetServerSidePropsContext } from "next";
 import { CartProps } from "./types";
+import protectedRoutes from "utils/protecetedRoutes";
 
-import Base from "templates/Base";
-import { Container } from "components/Container";
-import Heading from "components/Heading";
-import { Divider } from "components/Divider";
-import CartList from "components/CartList";
-import PaymentOptions from "components/PaymentOptions";
+export default function CartPage(props: CartProps) {
+    return <Cart {...props} />;
+}
 
-const Cart = ({ cards }: CartProps) => {
-    const handlePayment = () => ({});
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const session = await protectedRoutes(context);
+    const apolloClient = initializeApollo(null, session);
 
-    return (
-        <Base>
-            <Container>
-                <Heading lineLeft lineColor="secondary" color="white">
-                    My Cart
-                </Heading>
-                <S.Content>
-                    <CartList />
+    const { data } = await apolloClient.query<QueryRecommended>({
+        query: QUERY_RECOMMENDED,
+    });
 
-                    <PaymentOptions handlePayment={handlePayment} cards={cards} />
-                </S.Content>
-                <Divider />
-            </Container>
-        </Base>
-    );
-};
-
-export default Cart;
+    return {
+        props: {
+            session,
+            items: itemsMock,
+            total: "$ 430,00",
+            cards: cardsMock,
+            recommendedTitle: data.recommended?.section?.title,
+            recommendedGames: gamesMapper(data.recommended?.section?.games),
+            recommendedHighlight: highlightMapper(data.recommended?.section?.highlight),
+        },
+    };
+}
