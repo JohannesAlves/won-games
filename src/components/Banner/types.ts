@@ -10,7 +10,3 @@ export type BannerProps = {
     ribbonSize?: RibbonSizes;
     ribbonColor?: RibbonColors;
 };
-
-export type ImageProps = {
-    src: string;
-};

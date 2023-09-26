@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import Ribbon from "../../components/Ribbon";
 import Button from "../../components/Button";
 import * as S from "./styles";
@@ -20,7 +22,10 @@ export default function Banner({
                     {ribbon}
                 </Ribbon>
             )}
-            <S.Image src={img} role="img" aria-label={title} />
+
+            <S.ImageWrapper>
+                <Image src={img} alt={title} fill />
+            </S.ImageWrapper>
 
             <S.Caption>
                 <S.Title>{title}</S.Title>
