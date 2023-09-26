@@ -8,12 +8,20 @@ import ShowCase from "components/ShowCase";
 
 import * as S from "./styles";
 import { SuccessTemplateProps } from "./types";
+import { useCart } from "hooks/useCart";
+import { useEffect } from "react";
 
 const Success = ({
     recommendedTitle,
     recommendedGames,
     recommendedHighlight,
 }: SuccessTemplateProps) => {
+    const { clearCart } = useCart();
+
+    useEffect(() => {
+        clearCart();
+    }, [clearCart]);
+
     return (
         <Base>
             <Container>
@@ -27,10 +35,7 @@ const Success = ({
                     <S.Text>
                         Wait for your payment details by email. Your game is now available
                         for download inside your{" "}
-                        <Link href="/profile/orders">
-                            <a>Orders List</a>
-                        </Link>
-                        . Enjoy!
+                        <Link href="/profile/orders">Orders List</Link>. Enjoy!
                     </S.Text>
                 </S.Wrapper>
             </Container>
