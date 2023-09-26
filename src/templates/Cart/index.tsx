@@ -34,7 +34,7 @@ const Cart = ({
     return (
         <Base>
             <Container>
-                <Heading lineLeft lineColor="secondary">
+                <Heading lineLeft lineColor="primary" color="white">
                     My cart
                 </Heading>
 

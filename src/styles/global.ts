@@ -30,7 +30,13 @@ const GlobalStyles = createGlobalStyle<GlobalStylesProps>`
 
           ${!removeBg &&
           css`
-              background-color: ${theme.colors.mainBg};
+              background: hsla(282, 36%, 25%, 1);
+
+              background: linear-gradient(
+                  90deg,
+                  hsla(282, 36%, 25%, 1) 0%,
+                  hsla(310, 22%, 37%, 1) 100%
+              );
           `}
       }
 
