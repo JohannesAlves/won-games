@@ -3,12 +3,10 @@ import { render } from "utils/test-utils";
 
 import gamesMock from "components/GameCardSlider/mock";
 import highlightMock from "components/Highlight/mock";
-import cardsMock from "components/PaymentOptions/mock";
 
 import Cart from ".";
 
 const props = {
-    cards: cardsMock,
     recommendedHighlight: highlightMock,
     recommendedGames: gamesMock,
 };
@@ -27,10 +25,10 @@ jest.mock("components/CartList", () => ({
     },
 }));
 
-jest.mock("components/PaymentOptions", () => ({
+jest.mock("components/PaymentForm", () => ({
     __esModule: true,
     default: function Mock() {
-        return <div data-testid="Mock PaymentOptions" />;
+        return <div data-testid="Mock PaymentForm" />;
     },
 }));
 

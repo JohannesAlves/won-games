@@ -1,37 +1,59 @@
-import { initializeApollo } from "utils/apollo";
-import { QueryRecommended } from "graphql/generated/QueryRecommended";
-import { QUERY_RECOMMENDED } from "graphql/queries/recommended";
-import { gamesMapper, highlightMapper } from "utils/mappers";
+import { Container } from "components/Container";
+import { Divider } from "components/Divider";
+import CartList from "components/CartList";
+import Heading from "components/Heading";
+import Base from "templates/Base";
+import { Info } from "@styled-icons/material-outlined/Info";
 
-import Cart from "templates/Cart";
+import * as S from "./styles";
+import { GameCardProps } from "components/GameCard/types";
+import { HighlightProps } from "components/Highlight/types";
+import { CartListProps } from "components/CartList/types";
+import ShowCase from "components/ShowCase";
+import PaymentForm from "components/PaymentForm";
 
-import itemsMock from "components/CartList/mock";
-import cardsMock from "components/PaymentOptions/mock";
-import { GetServerSidePropsContext } from "next";
-import { CartProps } from "./types";
-import protectedRoutes from "utils/protecetedRoutes";
+export type CartProps = {
+    recommendedTitle: string;
+    recommendedGames: GameCardProps[];
+    recommendedHighlight: HighlightProps;
+} & CartListProps;
 
-export default function CartPage(props: CartProps) {
-    return <Cart {...props} />;
-}
+const Cart = ({
+    recommendedTitle,
+    recommendedGames,
+    recommendedHighlight,
+}: CartProps) => {
+    return (
+        <Base>
+            <Container>
+                <Heading lineLeft lineColor="secondary">
+                    My cart
+                </Heading>
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const session = await protectedRoutes(context);
-    const apolloClient = initializeApollo(null, session);
+                <S.Content>
+                    <CartList />
 
-    const { data } = await apolloClient.query<QueryRecommended>({
-        query: QUERY_RECOMMENDED,
-    });
+                    <PaymentForm />
+                </S.Content>
 
-    return {
-        props: {
-            session,
-            items: itemsMock,
-            total: "$ 430,00",
-            cards: cardsMock,
-            recommendedTitle: data.recommended?.section?.title,
-            recommendedGames: gamesMapper(data.recommended?.section?.games),
-            recommendedHighlight: highlightMapper(data.recommended?.section?.highlight),
-        },
-    };
-}
+                <S.Text>
+                    <Info size={18} /> Your purchase is protected by a secure connection
+                    from the WON platform. By purchasing from our store you agree and
+                    agree to our <a href="#">terms of use.</a> After making the purchase
+                    you are entitled to a refund within a maximum of 30 days, without any
+                    additional cost, as long as the download of the purchased game has not
+                    occurred after your purchase.
+                </S.Text>
+                <Divider />
+            </Container>
+
+            <ShowCase
+                title={recommendedTitle}
+                games={recommendedGames}
+                highlight={recommendedHighlight}
+            />
+        </Base>
+    );
+};
+
+export default Cart;
