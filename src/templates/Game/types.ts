@@ -5,6 +5,7 @@ import { GameInfoProps } from "components/GameInfo/types";
 import { HighlightProps } from "components/Highlight/types";
 
 export type GameTemplateProps = {
+    slug?: string;
     cover: string;
     gameInfo: GameInfoProps;
     gallery?: GalleryImageProps[];
