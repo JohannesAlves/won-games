@@ -16,6 +16,7 @@ import { QUERY_RECOMMENDED } from "graphql/queries/recommended";
 import { gamesMapper, highlightMapper } from "utils/mappers";
 import { QueryUpcoming, QueryUpcomingVariables } from "graphql/generated/QueryUpcoming";
 import { QUERY_UPCOMING } from "graphql/queries/upcoming";
+import { getImageUrl } from "utils/getImageUrl";
 
 const apolloClient = initializeApollo();
 
@@ -78,25 +79,25 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return {
         props: {
             revalidate: 60,
-            cover: `http://localhost:1337${game.cover?.src}`,
+            cover: `${getImageUrl(game.cover?.src)}`,
             gameInfo: {
                 id: game.id,
                 title: game.name,
                 price: game.price,
                 description: game.short_description,
             },
-            gallery: game.gallery.map(image => ({
-                src: `http://localhost:1337${image.src}`,
+            gallery: game.gallery.map((image) => ({
+                src: `${getImageUrl(image.src)}`,
                 label: image.label,
             })),
             description: game.description,
             details: {
                 developer: game.developers[0].name,
                 releaseDate: game.release_date,
-                platforms: game.platforms.map(platform => platform.name),
+                platforms: game.platforms.map((platform) => platform.name),
                 publisher: game.publisher?.name,
                 rating: game.rating,
-                genres: game.categories.map(category => category.name),
+                genres: game.categories.map((category) => category.name),
             },
             upcomingGames: gamesMapper(upcomingGames.upcomingGames),
             upcomingHighlight: highlightMapper(
