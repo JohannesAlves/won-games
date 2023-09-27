@@ -5,6 +5,7 @@ import Link from "next/link";
 import formatPrice from "utils/formatPrice";
 import CartButton from "components/CartButton";
 import WishlistButton from "components/WishlistButton";
+import Image from "next/image";
 
 export default function GameCard({
     id,
@@ -27,7 +28,8 @@ export default function GameCard({
                             {ribbon}
                         </Ribbon>
                     )}
-                    <img src={img} alt={title} />
+
+                    <Image src={img} alt={title} fill={true} />
                 </S.ImageBox>
             </Link>
 

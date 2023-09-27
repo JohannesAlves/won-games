@@ -42,14 +42,6 @@ const Home = ({
             games={upcommingGames}
             highlight={upcommingHighlight}
         />
-
-        {freeGames && (
-            <ShowCase
-                title={freeGamesTitle}
-                highlight={freeHighlight}
-                games={freeGames}
-            />
-        )}
     </Base>
 );
 

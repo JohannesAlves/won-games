@@ -49,7 +49,7 @@ describe("<Home />", () => {
     it("should render banner and show cases", () => {
         render(<Home {...props} />);
 
-        expect(screen.getAllByTestId("Mock ShowCase")).toHaveLength(4);
+        expect(screen.getAllByTestId("Mock ShowCase")).toHaveLength(3);
         expect(screen.getByTestId("Mock BannerSlider")).toBeInTheDocument();
 
         // banner

@@ -24,7 +24,7 @@ export default function Banner({
             )}
 
             <S.ImageWrapper>
-                <Image src={img} alt={title} fill />
+                <Image src={img} alt={title} fill={true} />
             </S.ImageWrapper>
 
             <S.Caption>
