@@ -9,6 +9,7 @@
         "lint": "eslint . --fix --max-warnings=0",
         "test": "jest",
         "typecheck": "tsc --project tsconfig.json --noEmit",
+        "cy:open": "cypress open",
         "test:watch": "jest --coverage --watch",
         "test:failure": "jest -f",
         "schema:download": "apollo client:download-schema --endpoint=http://localhost:1337/graphql schema-temp.gql",
