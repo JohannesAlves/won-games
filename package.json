@@ -10,6 +10,7 @@
         "test": "jest",
         "typecheck": "tsc --project tsconfig.json --noEmit",
         "cy:open": "cypress open",
+        "cy:run": "cypress run",
         "test:watch": "jest --coverage --watch",
         "test:failure": "jest -f",
         "schema:download": "apollo client:download-schema --endpoint=http://localhost:1337/graphql schema-temp.gql",
