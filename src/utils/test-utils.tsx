@@ -1,3 +1,4 @@
+import "@testing-library/jest-dom";
 import { RenderOptions, render } from "@testing-library/react";
 
 import { WishlistContext, WishlistContextDefaultValues } from "hooks/useWishlist";

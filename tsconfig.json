@@ -19,6 +19,6 @@
         "noFallthroughCasesInSwitch": false,
         "types": ["cypress", "@testing-library/cypress"]
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./node_modules/cypress"],
     "exclude": ["node_modules", "generators", "cypress/**/*", "cypress.config.ts"]
 }
