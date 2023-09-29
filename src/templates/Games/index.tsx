@@ -26,7 +26,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
         },
     });
 
-    if (!data) return <p>Loading...</p>;
+    if (!data) return null;
 
     const { games, gamesConnection } = data;
 
@@ -66,7 +66,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
                     {data?.games.length ? (
                         <>
                             <Grid>
-                                {data?.games.map(game => (
+                                {data?.games.map((game) => (
                                     <GameCard
                                         id={game.id}
                                         key={game.name}
