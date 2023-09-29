@@ -1,6 +1,3 @@
-import { AddShoppingCart, FavoriteBorder } from "@styled-icons/material-outlined";
-
-import Button from "components/Button";
 import Heading from "components/Heading";
 import Ribbon from "components/Ribbon";
 
@@ -11,7 +8,7 @@ import CartButton from "components/CartButton";
 import WishlistButton from "components/WishlistButton";
 
 const GameInfo = ({ id, title, description, price }: GameInfoProps) => (
-    <S.Wrapper>
+    <S.Wrapper data-cy="game-info">
         <Heading color="black" lineBottom>
             {title}
         </Heading>

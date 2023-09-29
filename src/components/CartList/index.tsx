@@ -10,7 +10,7 @@ const CartList = ({ hasButton = false }: CartListProps) => {
     const { items, total } = useCart();
 
     return (
-        <S.Wrapper isEmpty={!items.length}>
+        <S.Wrapper isEmpty={!items.length} data-cy="cart-list">
             {items?.length ? (
                 <>
                     <S.GamesList>
