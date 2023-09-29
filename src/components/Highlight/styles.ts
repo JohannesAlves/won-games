@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 
 import media from "styled-media-query";
-import { WrapperProps } from "./types";
+import { HighlightProps } from "./types";
+type WrapperProps = Pick<HighlightProps, "alignment">;
 
 const wrapperModifiers = {
     right: () => css`

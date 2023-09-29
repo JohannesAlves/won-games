@@ -20,7 +20,7 @@ export default function GameCard({
     ribbonSize = "small",
 }: GameCardProps) {
     return (
-        <S.Wrapper>
+        <S.Wrapper data-cy="game-card">
             <Link href={`/game/${slug}`} passHref>
                 <S.ImageBox>
                     {!!ribbon && (
