@@ -63,6 +63,14 @@ Cypress.Commands.add(
     },
 );
 
+Cypress.Commands.add("signUp", (user: User) => {
+    cy.findByPlaceholderText(/username/i).type(user.username);
+    cy.findByPlaceholderText(/email/i).type(user.email);
+    cy.findByPlaceholderText(/^password/i).type(user.password);
+    cy.findByPlaceholderText(/confirm password/i).type(user.password);
+    cy.findByRole("button", { name: /sign up now/i }).click();
+});
+
 Cypress.Commands.add("shouldBeGreaterThan", (value) => {
     cy.findByText(/^\$\d+(\.\d{1,2})?/)
         .invoke("text")

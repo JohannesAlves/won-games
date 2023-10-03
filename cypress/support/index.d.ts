@@ -7,6 +7,12 @@ type ShowcaseAttributes = {
     gameCards?: boolean;
 };
 
+type User = {
+    username: string;
+    email: string;
+    password: string;
+};
+
 declare namespace Cypress {
     interface Chainable {
         /**
@@ -20,6 +26,12 @@ declare namespace Cypress {
          * @example cy.shouldRenderShowcase()
          */
         shouldRenderShowcase(attrs: ShowcaseAttributes): Chainable<Element>;
+
+        /**
+         * Custom command to sign up
+         * @example cy.signUp(user)
+         */
+        signUp(user: User): Chainable<Element>;
 
         /**
          * Custom command to check if value is less than
