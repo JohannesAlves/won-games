@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/JohannesAlves/won-games">
-    <img src="public/img/logo.svg" alt="Logo" width="80" height="80">
+    <img src="public/img/logo.svg" alt="Logo" >
   </a>
 
   <h3 align="center">Won Games</h3>
