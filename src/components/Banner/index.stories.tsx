@@ -18,13 +18,13 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<BannerProps> = args => (
+export const Default: Story<BannerProps> = (args) => (
     <div style={{ maxWidth: "104rem", margin: "0 auto" }}>
         <Banner {...args} />
     </div>
 );
 
-export const withRibbon: Story<BannerProps> = args => (
+export const withRibbon: Story<BannerProps> = (args) => (
     <div style={{ maxWidth: "104rem", margin: "0 auto" }}>
         <Banner
             {...args}

@@ -12,7 +12,7 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<DropdownProps> = args => <Dropdown {...args} />;
+export const Default: Story<DropdownProps> = (args) => <Dropdown {...args} />;
 
 Default.args = {
     title: "Click here",

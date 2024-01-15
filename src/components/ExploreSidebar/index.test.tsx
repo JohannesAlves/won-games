@@ -3,8 +3,6 @@ import { fireEvent, screen } from "@testing-library/react";
 import ExploreSidebar from ".";
 import { render } from "utils/test-utils";
 import items from "./mock";
-import { css } from "styled-components";
-import { Overlay } from "./styles";
 
 describe("<ExploreSidebar />", () => {
     it("should render the headings", () => {

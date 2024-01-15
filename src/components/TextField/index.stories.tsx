@@ -18,25 +18,25 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<TextFieldProps> = args => (
+export const Default: Story<TextFieldProps> = (args) => (
     <div style={{ maxWidth: 300, padding: 15 }}>
         <TextField {...args} />
     </div>
 );
 
-export const withIcon: Story<TextFieldProps> = args => (
+export const withIcon: Story<TextFieldProps> = (args) => (
     <div style={{ maxWidth: 300, padding: 15 }}>
         <TextField {...args} hasIcon={<Email />} />
     </div>
 );
 
-export const iconToRight: Story<TextFieldProps> = args => (
+export const iconToRight: Story<TextFieldProps> = (args) => (
     <div style={{ maxWidth: 300, padding: 15 }}>
         <TextField {...args} hasIcon={<Email />} iconToRight />
     </div>
 );
 
-export const withError: Story<TextFieldProps> = args => (
+export const withError: Story<TextFieldProps> = (args) => (
     <div style={{ maxWidth: 300, padding: 15 }}>
         <TextField {...args} hasIcon={<Email />} error="Ops... something wrong" />
     </div>

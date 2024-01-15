@@ -13,7 +13,7 @@ export default {
     },
 } as Meta;
 
-export const Default: Story = args => (
+export const Default: Story = (args) => (
     <div style={{ maxWidth: "98%", display: "flex", justifyContent: "flex-end" }}>
         <CartDropdown {...args} />
     </div>

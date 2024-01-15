@@ -16,7 +16,7 @@ export default {
     },
 } as Meta;
 
-export const Basic: Story<RibbonProps> = args => (
+export const Basic: Story<RibbonProps> = (args) => (
     <div
         style={{
             width: "40rem",

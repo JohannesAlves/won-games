@@ -10,13 +10,13 @@ export default {
     args: { ...item },
 } as Meta;
 
-export const Default: Story<HighlightProps> = args => (
+export const Default: Story<HighlightProps> = (args) => (
     <div style={{ maxWidth: "104rem" }}>
         <Highlight {...args} />
     </div>
 );
 
-export const WithFloatImage: Story<HighlightProps> = args => (
+export const WithFloatImage: Story<HighlightProps> = (args) => (
     <div style={{ maxWidth: "104rem" }}>
         <Highlight {...args} />
     </div>

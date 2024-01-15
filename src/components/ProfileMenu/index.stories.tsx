@@ -12,6 +12,6 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<ProfileMenuProps> = args => (
+export const Default: Story<ProfileMenuProps> = (args) => (
     <ProfileMenu {...args} activeLink="/profile/me" />
 );

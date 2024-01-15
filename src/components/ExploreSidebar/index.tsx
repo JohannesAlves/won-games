@@ -19,12 +19,12 @@ const ExploreSidebar = ({ onFilter, items, initialValues = {} }: ExploreSidebarP
     }, [values]);
 
     const handleRadio = (name: string, value: string | boolean) => {
-        setValues(previousValues => ({ ...previousValues, [name]: value }));
+        setValues((previousValues) => ({ ...previousValues, [name]: value }));
     };
 
     const handleCheckbox = (name: string, value: string) => {
         const currentList = (values[name] as []) || [];
-        setValues(previousValues => ({
+        setValues((previousValues) => ({
             ...previousValues,
             [name]: xor(currentList, [value]),
         }));
@@ -43,7 +43,7 @@ const ExploreSidebar = ({ onFilter, items, initialValues = {} }: ExploreSidebarP
             </S.IconWrapper>
 
             <S.Content>
-                {items.map(item => (
+                {items.map((item) => (
                     <S.Items key={item.title}>
                         <Heading
                             lineBottom
@@ -55,7 +55,7 @@ const ExploreSidebar = ({ onFilter, items, initialValues = {} }: ExploreSidebarP
                         </Heading>
 
                         {item.type === "checkbox" &&
-                            item.fields.map(field => (
+                            item.fields.map((field) => (
                                 <Checkbox
                                     key={field.name}
                                     name={field.name}
@@ -69,7 +69,7 @@ const ExploreSidebar = ({ onFilter, items, initialValues = {} }: ExploreSidebarP
                             ))}
 
                         {item.type === "radio" &&
-                            item.fields.map(field => (
+                            item.fields.map((field) => (
                                 <Radio
                                     key={field.name}
                                     id={field.name}

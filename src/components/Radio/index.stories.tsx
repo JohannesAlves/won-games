@@ -16,7 +16,7 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<RadioProps> = args => (
+export const Default: Story<RadioProps> = (args) => (
     <>
         <div style={{ padding: 10 }}>
             <Radio

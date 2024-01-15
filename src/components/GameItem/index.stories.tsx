@@ -12,9 +12,9 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<GameItemProps> = args => <GameItem {...args} />;
+export const Default: Story<GameItemProps> = (args) => <GameItem {...args} />;
 
-export const WithPayment: Story<GameItemProps> = args => <GameItem {...args} />;
+export const WithPayment: Story<GameItemProps> = (args) => <GameItem {...args} />;
 
 WithPayment.args = {
     downloadLink: "http://link",

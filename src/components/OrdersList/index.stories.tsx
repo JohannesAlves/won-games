@@ -12,7 +12,7 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<OrdersListProps> = args => (
+export const Default: Story<OrdersListProps> = (args) => (
     <div style={{ maxWidth: 850, margin: "auto" }}>
         <OrdersList {...args} />
     </div>

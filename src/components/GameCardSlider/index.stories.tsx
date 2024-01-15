@@ -16,7 +16,7 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<GameCardProps[]> = args => (
+export const Default: Story<GameCardProps[]> = (args) => (
     <div style={{ maxWidth: "130rem", margin: "0 auto" }}>
         <GameCardSlider items={args} {...args} />
     </div>

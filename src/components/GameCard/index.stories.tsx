@@ -20,13 +20,13 @@ export default {
     },
 } as Meta;
 
-export const Basic: Story<GameCardProps> = args => (
+export const Basic: Story<GameCardProps> = (args) => (
     <div style={{ width: "30rem" }}>
         <GameCard {...args} />
     </div>
 );
 
-export const IsInCart: Story<GameCardProps & CartContextData> = args => (
+export const IsInCart: Story<GameCardProps & CartContextData> = (args) => (
     <div style={{ width: "30rem" }}>
         <GameCard {...args} />
     </div>
@@ -36,7 +36,7 @@ IsInCart.args = {
     isInCart: () => true,
 };
 
-export const WithRibbon: Story<GameCardProps> = args => (
+export const WithRibbon: Story<GameCardProps> = (args) => (
     <div style={{ width: "30rem" }}>
         <GameCard {...args} />
     </div>

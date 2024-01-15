@@ -8,7 +8,7 @@ export default {
     title: "ShowCase",
     component: ShowCase,
     decorators: [
-        Story => (
+        (Story) => (
             <div style={{ margin: "0 auto" }}>
                 <Story />
             </div>
@@ -22,6 +22,6 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<ShowCaseProps> = args => <ShowCase {...args} />;
+export const Default: Story<ShowCaseProps> = (args) => <ShowCase {...args} />;
 
 Default.args = { title: "Most Popular", highlight: highlightMock, games: gamesMock };

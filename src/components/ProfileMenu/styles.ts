@@ -1,5 +1,4 @@
 import styled, { DefaultTheme, css } from "styled-components";
-import Link from "next/link";
 import media from "styled-media-query";
 
 export const Nav = styled.nav`

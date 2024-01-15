@@ -12,7 +12,7 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<UserDropdownProps> = args => (
+export const Default: Story<UserDropdownProps> = (args) => (
     <div style={{ maxWidth: "98%", display: "flex", justifyContent: "flex-end" }}>
         <UserDropdown {...args} />
     </div>

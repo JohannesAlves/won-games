@@ -13,7 +13,7 @@ export default {
     },
 } as Meta;
 
-export const Basic: Story<MenuProps> = args => <Menu {...args} />;
+export const Basic: Story<MenuProps> = (args) => <Menu {...args} />;
 
 Basic.parameters = {
     layout: "fullscreen",
@@ -22,4 +22,4 @@ Basic.parameters = {
     },
 };
 
-export const Logged: Story<MenuProps> = args => <Menu {...args} username="Johannes" />;
+export const Logged: Story<MenuProps> = (args) => <Menu {...args} username="Johannes" />;

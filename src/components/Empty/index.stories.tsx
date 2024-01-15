@@ -12,7 +12,7 @@ export default {
     },
 } as Meta;
 
-export const Default: Story<EmptyProps> = args => <Empty {...args} />;
+export const Default: Story<EmptyProps> = (args) => <Empty {...args} />;
 
 Default.args = {
     title: "Your wishlist is empty",
